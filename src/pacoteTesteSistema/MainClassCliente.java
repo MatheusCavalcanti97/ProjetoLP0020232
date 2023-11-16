@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,15 +19,49 @@ import exceptionsClass.EnderecoException;
 import exceptionsClass.TelefoneException;
 import util.ValidacaoIO;
 
-public class MainClass {
+public class MainClassCliente {
 
-	public static void main(String[] args) {
-		Scanner ler = new Scanner(System.in);
-		inserirCliente();
+	public MainClassCliente() {
 
 	}
 
-	private static void inserirCliente() {
+	public static void menuCliente() {
+
+		Integer opcaoMenu = null;
+		boolean varFlagMenu = true;
+
+		while (varFlagMenu) {
+			System.out.println("Informe uma Opção." + "\n1. Inserir Info Pessoais." + "\n2. Atualizar Info Cliente."
+					+ "\n3. Deletar Cliente." + "\n4. Listar Cliente." + "\n0. Sair." + "-> ");
+
+			try {
+				Scanner ler = new Scanner(System.in);
+				opcaoMenu = ler.nextInt();
+
+			} catch (InputMismatchException e) {
+				System.out.println("\n------------------------------------");
+				System.out.println("Caracter Inserido Incorretamente.\nTente Novamente.");
+				System.out.println("\n------------------------------------");
+				continue;
+			}
+
+			if (opcaoMenu == 0) {
+				System.out.println("\n------------------------------------");
+				System.out.println("\nprograma Encerrado.\n");
+				System.out.println("\n------------------------------------\n");
+				varFlagMenu = false;
+			} else if (opcaoMenu == 1) {
+				inserirCliente();
+
+			} else {
+				System.out.println("\n------------------------------------");
+				System.out.println("\nInsira uma Opção Correta para o Menu..\n");
+				System.out.println("\n------------------------------------\n");
+			}
+		}
+	}
+
+	public static void inserirCliente() {
 
 		boolean flagParada = true;
 		Endereco end = null;
@@ -148,7 +183,7 @@ public class MainClass {
 
 	}
 
-	private static Telefone inserirTelefoneCliente() throws TelefoneException {
+	public static Telefone inserirTelefoneCliente() throws TelefoneException {
 		Scanner ler5 = new Scanner(System.in);
 		String dddTelefone = null, numeroTelefone = null;
 		Telefone telefone = null;
@@ -174,5 +209,4 @@ public class MainClass {
 		return telefone;
 
 	}
-
 }
