@@ -1,5 +1,7 @@
 package entidades;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -103,6 +105,23 @@ public class Cliente extends Pessoa implements CrudClass<Cliente>, ICliente {
 	@Override
 	public Cliente buscarPorCpf(String cpf) {
 		return null;
+	}
+
+	@Override
+	public String toString() {
+		Date a = this.dataNascimento;
+		Date b = this.dataDeCadastro;
+		DateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat f2 = new SimpleDateFormat("dd/MM/yyyy");
+		String data1 = null, data2 = null;
+
+		data1 = f.format(a);
+		data2 = f2.format(b);
+		return "CPF: " + this.cpfPessoa + "\nNome: " + this.nome + "\nData de Nascimento: " + data1 + "\nE-mail: "
+				+ this.email + "\n---------- INFO ENDEREÇO ----------\n" + "Rua: " + this.getEndereco().getNomeRua()
+				+ "Número Imovél: " + this.getEndereco().getNumeroImovel() + "\nCidade: "
+				+ this.getEndereco().getCidade() + "\nEstado: " + this.getEndereco().getEstado()
+				+ "\nData de Cadastro: " + data2;
 	}
 
 }

@@ -20,10 +20,7 @@ import exceptionsClass.TelefoneException;
 import util.ValidacaoIO;
 
 public class MainClassCliente {
-
-	public MainClassCliente() {
-
-	}
+	Scanner ler1 = new Scanner(System.in);
 
 	public static void menuCliente() {
 
@@ -31,9 +28,10 @@ public class MainClassCliente {
 		boolean varFlagMenu = true;
 
 		while (varFlagMenu) {
+			System.out.println("\n------------------------------------");
 			System.out.println("Informe uma Opção." + "\n1. Inserir Info Pessoais." + "\n2. Atualizar Info Cliente."
 					+ "\n3. Deletar Cliente." + "\n4. Listar Cliente." + "\n0. Sair." + "-> ");
-
+			System.out.println("------------------------------------");
 			try {
 				Scanner ler = new Scanner(System.in);
 				opcaoMenu = ler.nextInt();
@@ -41,7 +39,7 @@ public class MainClassCliente {
 			} catch (InputMismatchException e) {
 				System.out.println("\n------------------------------------");
 				System.out.println("Caracter Inserido Incorretamente.\nTente Novamente.");
-				System.out.println("\n------------------------------------");
+				System.out.println("------------------------------------");
 				continue;
 			}
 
@@ -92,7 +90,7 @@ public class MainClassCliente {
 
 				Scanner ler2 = new Scanner(System.in);
 
-				System.out.println("-------------------------------------------------------");
+				System.out.println("\n-------------------------------------------------------");
 				System.out.println("-- INSIRA AS INFORMAÇÕES PESSOAIS REFERENTE AO CLIENTE --");
 				System.out.println("-------------------------------------------------------");
 
@@ -121,6 +119,7 @@ public class MainClassCliente {
 					}
 
 				}
+				
 				ler2.nextLine();
 
 				System.out.printf("\nInforme um Email: ");
@@ -141,17 +140,15 @@ public class MainClassCliente {
 				telList.add(inserirTelefoneCliente());
 				end = new Endereco(nomeRua, numeroImovel, cidade, estado);
 				c = new Cliente(cpf, nome, dataNasc, email, end, telList, null);
-				c.inserir(c);
+				
 
 				System.out.println("-------------------------------------------------------");
 				System.out.println("-- CLIENTE INSERIDO COM SUCESSO --");
-
-				System.out.println("\nNome: " + c.getNome() + "\nCpf: " + c.getCpfPessoa() + "\nData de Nascimento: "
-						+ c.getDataNascimento() + "\nE-mail: " + c.getEmail()
-						+ "\n\n-----------------------\nEndereco\n-----------------------\n\nRua: "
-						+ c.getEndereco().getNomeRua() + "\nNúmero do Imovel: " + c.getEndereco().getNumeroImovel()
-						+ "\nCidade: " + c.getEndereco().getCidade() + "\nEstado: " + c.getEndereco().getEstado());
 				System.out.println("-------------------------------------------------------");
+				System.out.println(c.toString());
+				System.out.println("-------------------------------------------------------");
+				
+				c.inserir(c);
 
 				break;
 			} catch (NullPointerException ex1) {
@@ -174,10 +171,13 @@ public class MainClassCliente {
 				System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 				System.out.println(ex5.getMessage() + "\n");
 
-			} catch (TelefoneException ex6) {
+			} catch (InputMismatchException ex6) {
 				System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-				System.out.println(ex6.getMessage() + "\n");
-			}
+				System.out.println("Erro ao inserir Letras para valores que devem ser Númericos.");
+			} catch (TelefoneException ex7) {
+				System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+				System.out.println(ex7.getMessage() + "\n");
+			} 
 
 		}
 
