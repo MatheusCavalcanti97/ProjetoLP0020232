@@ -1,23 +1,28 @@
 package pacoteTesteSistema;
 
 import java.text.ParseException;
-import java.util.Scanner;
 
 import exceptionsClass.AtributosNaoNulosNaoVaziosException;
-import util.ValidacaoIO;
 
 public class testeUsabilidadeMetodos {
 	public static void main(String[] args) throws ParseException, AtributosNaoNulosNaoVaziosException {
-		Scanner ler5 = new Scanner(System.in);
-		String dddTelefone = null, numeroTelefone = null;
-		String a = "", b = null;
-		System.out.println(a.replaceAll(" ", ""));
+//		Scanner ler5 = new Scanner(System.in);
+//		String dddTelefone = null, numeroTelefone = null;
+//		String a = "", b = null;
+//		System.out.println(a.replaceAll(" ", ""));
+//
+//		System.out.println(ValidacaoIO.verificacaoStringVazia(a));
+//		System.out.println(ValidacaoIO.verificacaoStringNula(b));
+//		System.out.println(ValidacaoIO.validaApenasDeLetras(a));
 
-		System.out.println(ValidacaoIO.verificacaoStringVazia(a));
-		System.out.println(ValidacaoIO.verificacaoStringNula(b));
-		System.out.println(ValidacaoIO.validaApenasDeLetras(a));
-		
-		
+		//formatando
+//		Date dataInscricao = new Date();
+//		DateFormat  dF = new SimpleDateFormat("dd/MM/yyyy");
+//		String resp = dF.format(dataInscricao);
+//		
+//		dataInscricao = dF.parse(resp);
+//		System.out.println(dataInscricao);
+
 //		System.out.printf("\nInforme o DDD do seu Número de Telefone (Composto 2 digitos - DIGITE APENAS NÚMEROS): ");
 //		dddTelefone = ler5.nextLine();
 //		
@@ -52,7 +57,6 @@ public class testeUsabilidadeMetodos {
 //    	data = sdf.parse(dataStr);
 //    	
 //    	System.out.println(dataStr);
-		
 
 	}
 }

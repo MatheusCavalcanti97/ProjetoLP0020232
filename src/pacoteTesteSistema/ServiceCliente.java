@@ -1,9 +1,9 @@
 package pacoteTesteSistema;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -14,7 +14,6 @@ import entidades.Endereco;
 import entidades.Telefone;
 import exceptionsClass.AtributosNaoNulosNaoVaziosException;
 import exceptionsClass.CpfException;
-import exceptionsClass.DataNascimentoException;
 import exceptionsClass.EnderecoException;
 import exceptionsClass.TelefoneException;
 import util.ValidacaoIO;
@@ -50,13 +49,30 @@ public class ServiceCliente {
 				varFlagMenu = false;
 			} else if (opcaoMenu == 1) {
 				inserirCliente();
-
+			} else if (opcaoMenu == 2) {
+				atualizar();
+			} else if (opcaoMenu == 3) {
+				deletarCliente();
+			} else if (opcaoMenu == 4) {
+				listarTodosClientes();
 			} else {
 				System.out.println("\n------------------------------------");
 				System.out.println("\nInsira uma Opção Correta para o Menu..\n");
 				System.out.println("\n------------------------------------\n");
 			}
 		}
+	}
+
+	public static void listarTodosClientes() {
+
+	}
+
+	public static void atualizar() {
+
+	}
+
+	public static void deletarCliente() {
+
 	}
 
 	public static void inserirCliente() throws TelefoneException {
@@ -67,9 +83,14 @@ public class ServiceCliente {
 		Cliente c = null;
 		Endereco endereco = null;
 		Telefone telefone = null;
+
 		Date dataNasc = new Date();
+		Date dataInscricao = new Date();
+
 		String cpf = "", nome = "", str = "", email = "";
+
 		List<Telefone> telList = new ArrayList<>();
+
 		int dia = 0, mes = 0, ano = 0;
 
 		String nomeRua = null, numeroImovel = "", cidade = "", estado = "";
@@ -83,32 +104,36 @@ public class ServiceCliente {
 			try {
 
 				Scanner ler2 = new Scanner(System.in);
+				
 
-				System.out.printf("Insira o Número de CPF Corretamente (Apenas Números): ");
+				System.out.printf("\nINSIRA O NÚMERO DO CPF (Apenas Números): ");
 				cpf = ler2.nextLine();
-
-				System.out.printf("\nInforme o NOME COMPLETO do Cliente: ");
+				
+				System.out.printf("\nNOME COMPLETO: ");
 				nome = ler2.nextLine();
 
 				dataNasc = inserirDataNascimento();
 
-				System.out.printf("\nInforme um Email: ");
+				System.out.printf("\nEMAIL: ");
 				email = ler2.nextLine();
 
 				endereco = inserirEndereco();
 				telefone = inserirTelefoneCliente();
 				telList.add(telefone);
+				dataInscricao = inserirDataCadastroCliente();
 
-				System.out.println("-------------------------------------------------------");
+				c = new Cliente(cpf, nome, dataNasc, email, endereco, telList, dataInscricao);
+				c.inserir(c);
+
+				System.out.println("\n\n-------------------------------------------------------");
 				System.out.println("-- CLIENTE INSERIDO COM SUCESSO --");
 				System.out.println("-------------------------------------------------------");
-				c = new Cliente(cpf, nome, dataNasc, email, endereco, telList, null);
-				c.inserir(c);
+				System.out.println(c.toString());
 				break;
 
 			} catch (CpfException ex1) {
 
-				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 				System.out.println(ex1.getMessage());
 				System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
@@ -149,15 +174,19 @@ public class ServiceCliente {
 	}
 
 	private static Telefone inserirTelefoneCliente() throws TelefoneException {
+		System.out.println("\n-------------------------------------------------------");
+		System.out.println("-- INFO. TELEFONE --");
+		System.out.println("---------------------------------------------------------");
+		
 		Scanner ler5 = new Scanner(System.in);
 		String dddTelefone = null, numeroTelefone = null;
 		Telefone telefone = null;
 
-		System.out.printf("\nInforme o DDD do seu Número de Telefone (Composto 2 digitos - DIGITE APENAS NÚMEROS): ");
+		System.out.printf("\nINFORME O DDD dDO SEU NÚMERO DE TELEFONE (Composto 2 digitos - DIGITE APENAS NÚMEROS): ");
 		dddTelefone = ler5.nextLine();
 
 		System.out.printf(
-				"\nInforme o Número do Telefone (Composto pelo número 9 na frente e mais 8 digitos - DIGITE APENAS NÚMEROS): ");
+				"\nIINFORME O NUMERO DO TELEFONE (Composto pelo número 9 na frente e mais 8 digitos - DIGITE APENAS NÚMEROS): ");
 		numeroTelefone = ler5.nextLine();
 
 		if (ValidacaoIO.validacaoTelefoneException(dddTelefone) == true
@@ -168,7 +197,7 @@ public class ServiceCliente {
 			telefone = new Telefone(telPhone);
 
 		} else {
-			throw new TelefoneException("Tente Inserir Novamente um telefone.");
+			throw new TelefoneException("TENTE NOVAMENTE INSERIR UM ENDEREÇO VÁLIDO.");
 		}
 
 		return telefone;
@@ -176,18 +205,22 @@ public class ServiceCliente {
 	}
 
 	private static Date inserirDataNascimento() throws ParseException {
+		System.out.println("\n-------------------------------------------------------");
+		System.out.println("-- INFO DATA NASCIMENTO --");
+		System.out.println("-------------------------------------------------------\n");
+		
 		Scanner ler = new Scanner(System.in);
 		Date dataNasc = new Date();
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		String str;
 		int dia, mes, ano;
-		System.out.printf("\nInforme o DIA de Nascimento: ");
+		System.out.printf("\nDIA DE NASCIMENTO: ");
 		dia = ler.nextInt();
 
-		System.out.printf("\nInforme o MÊS DE Nascimento: ");
+		System.out.printf("\nMES DE NASCIMENTO: ");
 		mes = ler.nextInt();
 
-		System.out.printf("\nInforme o ANO de Nascimento: ");
+		System.out.printf("\nANO DE NASCIMENTO: ");
 		ano = ler.nextInt();
 
 		if (ValidacaoIO.validarData(dia, mes, ano) == true) {
@@ -196,7 +229,7 @@ public class ServiceCliente {
 			try {
 				dataNasc = formato.parse(str);
 			} catch (ParseException pe) {
-				throw new ParseException("Insira uma data de Nascimento Válida", 1);
+				throw new ParseException("INSIRA UMA DATA VÁLIDA.", 1);
 			}
 
 		}
@@ -205,24 +238,38 @@ public class ServiceCliente {
 	}
 
 	private static Endereco inserirEndereco() {
+		
+		System.out.println("\n-------------------------------------------------------");
+		System.out.println("-- INFO. ENDEREÇO --");
+		System.out.println("-------------------------------------------------------");
 		Scanner ler = new Scanner(System.in);
 		Endereco end = null;
 		String nomeRua, numeroImovel, cidade, estado;
 
-		System.out.printf("\nInforme o NOME DA RUA da Residencia: ");
+		System.out.printf("\nRUA: ");
 		nomeRua = ler.nextLine();
 
-		System.out.printf("\nInforme o NÚMERO DO IMOVÉL da Residencia: ");
+		System.out.printf("\nNÚMERO DO IMOVEL: ");
 		numeroImovel = ler.nextLine();
 
-		System.out.printf("\nInforme o NOME DA CIDADE da Residencia: ");
+		System.out.printf("\nNOME DA CIDADE: ");
 		cidade = ler.nextLine();
 
-		System.out.printf("\nInforme o NOME DO ESTADO da Residencia: ");
+		System.out.printf("\nNOME DO ESTADO (Apenas com duas Letras): ");
 		estado = ler.nextLine();
 
 		end = new Endereco(nomeRua, numeroImovel, cidade, estado);
 		return end;
+	}
+
+	private static Date inserirDataCadastroCliente() throws ParseException {
+		Date dataInscricao = new Date();
+		DateFormat dF = new SimpleDateFormat("dd/MM/yyyy");
+
+		String resp = dF.format(dataInscricao);
+		dataInscricao = dF.parse(resp);
+
+		return dataInscricao;
 	}
 
 }

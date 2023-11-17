@@ -33,23 +33,6 @@ public class Cliente extends Pessoa implements CrudClass<Cliente>, ICliente {
 		this.dataDeCadastro = dataDeCadastro;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(dataDeCadastro);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Cliente other = (Cliente) obj;
-		return Objects.equals(dataDeCadastro, other.dataDeCadastro);
-	}
-
 	public void inserir(Cliente c)
 			throws TelefoneException, EnderecoException, CpfException, AtributosNaoNulosNaoVaziosException {
 
@@ -109,19 +92,41 @@ public class Cliente extends Pessoa implements CrudClass<Cliente>, ICliente {
 
 	@Override
 	public String toString() {
-		Date a = this.dataNascimento;
-		Date b = this.dataDeCadastro;
-		DateFormat f = new SimpleDateFormat("dd/MM/yyyy");
-		DateFormat f2 = new SimpleDateFormat("dd/MM/yyyy");
-		String data1 = null, data2 = null;
+		Date a = new Date();
+		DateFormat dF = new SimpleDateFormat("dd/MM/yyyy");
+		String dataNasc1 = dF.format(this.dataNascimento);
+		String dataCadastro2 = dF.format(this.dataDeCadastro);
 
-		data1 = f.format(a);
-		data2 = f2.format(b);
-		return "CPF: " + this.cpfPessoa + "\nNome: " + this.nome + "\nData de Nascimento: " + data1 + "\nE-mail: "
-				+ this.email + "\n---------- INFO ENDEREÇO ----------\n" + "Rua: " + this.getEndereco().getNomeRua()
-				+ "Número Imovél: " + this.getEndereco().getNumeroImovel() + "\nCidade: "
-				+ this.getEndereco().getCidade() + "\nEstado: " + this.getEndereco().getEstado()
-				+ "\nData de Cadastro: " + data2;
+		String returnInfo =  "CPF: " + this.cpfPessoa 
+				+ "\nNome: " + this.nome 
+				+ "\nData de Nascimento: " + dataNasc1 
+				+ "\nE-mail: " + this.email 
+				+ "\n---------- INFO ENDEREÇO ----------\n" 
+				+ "\nRua: " + this.getEndereco().getNomeRua()
+				+ "\nNúmero Imovél: " + this.getEndereco().getNumeroImovel() 
+				+ "\nCidade: "+ this.getEndereco().getCidade() 
+				+ "\nEstado: " + this.getEndereco().getEstado()
+				+ "\nData de Cadastro: " + dataCadastro2;
+		
+		return returnInfo;
+		
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(dataDeCadastro);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		return Objects.equals(dataDeCadastro, other.dataDeCadastro);
 	}
 
 }
