@@ -19,10 +19,10 @@ import exceptionsClass.EnderecoException;
 import exceptionsClass.TelefoneException;
 import util.ValidacaoIO;
 
-public class MainClassCliente {
+public class ServiceCliente {
 	Scanner ler1 = new Scanner(System.in);
 
-	public static void menuCliente() {
+	public static void menuCliente() throws TelefoneException {
 
 		Integer opcaoMenu = null;
 		boolean varFlagMenu = true;
@@ -59,131 +59,96 @@ public class MainClassCliente {
 		}
 	}
 
-	public static void inserirCliente() {
+	public static void inserirCliente() throws TelefoneException {
 
 		boolean flagParada = true;
 		Endereco end = null;
 
 		Cliente c = null;
-		String cpf = "", nome = "";
+		Endereco endereco = null;
+		Telefone telefone = null;
 		Date dataNasc = new Date();
-		String email = "";
+		String cpf = "", nome = "", str = "", email = "";
 		List<Telefone> telList = new ArrayList<>();
-
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		int dia = 0, mes = 0, ano = 0;
-		String str = "";
 
 		String nomeRua = null, numeroImovel = "", cidade = "", estado = "";
 
-		// cpf
-		// nome
-		// data de nascimento
-		// e-mail
-		// endereco
-		// telefone
-		// data de cadastro
+		System.out.println("\n-------------------------------------------------------");
+		System.out.println("-- INSIRA AS INFORMAÇÕES PESSOAIS REFERENTE AO CLIENTE --");
+		System.out.println("-------------------------------------------------------");
 
-		while (true) {
+		while (flagParada) {
 
 			try {
 
 				Scanner ler2 = new Scanner(System.in);
 
-				System.out.println("\n-------------------------------------------------------");
-				System.out.println("-- INSIRA AS INFORMAÇÕES PESSOAIS REFERENTE AO CLIENTE --");
-				System.out.println("-------------------------------------------------------");
-
-				System.out.printf("\nInsira o Número de CPF Corretamente (Apenas Números): ");
+				System.out.printf("Insira o Número de CPF Corretamente (Apenas Números): ");
 				cpf = ler2.nextLine();
 
 				System.out.printf("\nInforme o NOME COMPLETO do Cliente: ");
 				nome = ler2.nextLine();
 
-				System.out.printf("\nInforme o DIA de Nascimento: ");
-				dia = ler2.nextInt();
-
-				System.out.printf("\nInforme o MÊS DE Nascimento: ");
-				mes = ler2.nextInt();
-
-				System.out.printf("\nInforme o ANO de Nascimento: ");
-				ano = ler2.nextInt();
-
-				if (ValidacaoIO.validarData(dia, mes, ano) == true) {
-					str = dia + "/" + mes + "/" + ano;
-					str = str.replaceAll(" ", "");
-					try {
-						dataNasc = formato.parse(str);
-					} catch (ParseException pe) {
-						throw new ParseException("Insira uma data de Nascimento Válida", 1);
-					}
-
-				}
-				
-				ler2.nextLine();
+				dataNasc = inserirDataNascimento();
 
 				System.out.printf("\nInforme um Email: ");
 				email = ler2.nextLine();
 
-				System.out.printf("\nInforme o NOME DA RUA da Residencia: ");
-				nomeRua = ler2.nextLine();
-
-				System.out.printf("\nInforme o NÚMERO DO IMOVÉL da Residencia: ");
-				numeroImovel = ler2.nextLine();
-
-				System.out.printf("\nInforme o NOME DA CIDADE da Residencia: ");
-				cidade = ler2.nextLine();
-
-				System.out.printf("\nInforme o NOME DO ESTADO da Residencia: ");
-				estado = ler2.nextLine();
-
-				telList.add(inserirTelefoneCliente());
-				end = new Endereco(nomeRua, numeroImovel, cidade, estado);
-				c = new Cliente(cpf, nome, dataNasc, email, end, telList, null);
-				
+				endereco = inserirEndereco();
+				telefone = inserirTelefoneCliente();
+				telList.add(telefone);
 
 				System.out.println("-------------------------------------------------------");
 				System.out.println("-- CLIENTE INSERIDO COM SUCESSO --");
 				System.out.println("-------------------------------------------------------");
-				System.out.println(c.toString());
-				System.out.println("-------------------------------------------------------");
-				
+				c = new Cliente(cpf, nome, dataNasc, email, endereco, telList, null);
 				c.inserir(c);
-
 				break;
-			} catch (NullPointerException ex1) {
-				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-				System.out.println(ex1.getMessage() + "\nReinicie Todo o Processo Novamente.\n");
 
-			} catch (CpfException ex2) {
+			} catch (CpfException ex1) {
+
 				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-				System.out.println(ex2.getMessage());
+				System.out.println(ex1.getMessage());
+				System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+			} catch (NullPointerException ex2) {
+
+				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+				System.out.println(ex2.getMessage() + "\nReinicie Todo o Processo Novamente.\n");
+				System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
 			} catch (AtributosNaoNulosNaoVaziosException ex3) {
+
 				System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 				System.out.println(ex3.getMessage() + "\n");
+				System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
 			} catch (ParseException ex4) {
 				System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 				System.out.println(ex4.getMessage() + "\n");
+				System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
 			} catch (EnderecoException ex5) {
 				System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 				System.out.println(ex5.getMessage() + "\n");
+				System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
 			} catch (InputMismatchException ex6) {
 				System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 				System.out.println("Erro ao inserir Letras para valores que devem ser Númericos.");
+				System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
 			} catch (TelefoneException ex7) {
 				System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 				System.out.println(ex7.getMessage() + "\n");
-			} 
+			}
 
 		}
 
 	}
 
-	public static Telefone inserirTelefoneCliente() throws TelefoneException {
+	private static Telefone inserirTelefoneCliente() throws TelefoneException {
 		Scanner ler5 = new Scanner(System.in);
 		String dddTelefone = null, numeroTelefone = null;
 		Telefone telefone = null;
@@ -209,4 +174,55 @@ public class MainClassCliente {
 		return telefone;
 
 	}
+
+	private static Date inserirDataNascimento() throws ParseException {
+		Scanner ler = new Scanner(System.in);
+		Date dataNasc = new Date();
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		String str;
+		int dia, mes, ano;
+		System.out.printf("\nInforme o DIA de Nascimento: ");
+		dia = ler.nextInt();
+
+		System.out.printf("\nInforme o MÊS DE Nascimento: ");
+		mes = ler.nextInt();
+
+		System.out.printf("\nInforme o ANO de Nascimento: ");
+		ano = ler.nextInt();
+
+		if (ValidacaoIO.validarData(dia, mes, ano) == true) {
+			str = dia + "/" + mes + "/" + ano;
+			str = str.replaceAll(" ", "");
+			try {
+				dataNasc = formato.parse(str);
+			} catch (ParseException pe) {
+				throw new ParseException("Insira uma data de Nascimento Válida", 1);
+			}
+
+		}
+		return dataNasc;
+
+	}
+
+	private static Endereco inserirEndereco() {
+		Scanner ler = new Scanner(System.in);
+		Endereco end = null;
+		String nomeRua, numeroImovel, cidade, estado;
+
+		System.out.printf("\nInforme o NOME DA RUA da Residencia: ");
+		nomeRua = ler.nextLine();
+
+		System.out.printf("\nInforme o NÚMERO DO IMOVÉL da Residencia: ");
+		numeroImovel = ler.nextLine();
+
+		System.out.printf("\nInforme o NOME DA CIDADE da Residencia: ");
+		cidade = ler.nextLine();
+
+		System.out.printf("\nInforme o NOME DO ESTADO da Residencia: ");
+		estado = ler.nextLine();
+
+		end = new Endereco(nomeRua, numeroImovel, cidade, estado);
+		return end;
+	}
+
 }

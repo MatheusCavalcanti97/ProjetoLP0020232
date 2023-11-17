@@ -88,7 +88,6 @@ public class Funcionario extends Pessoa implements CrudClass<Funcionario>, IFunc
 
 	@Override
 	public double calcularSalarioLiquido(Double comissao) {
-
 		return (this.salario + comissao);
 	}
 

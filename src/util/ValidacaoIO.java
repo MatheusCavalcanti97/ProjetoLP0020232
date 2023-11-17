@@ -3,11 +3,13 @@ package util;
 import java.text.ParseException;
 import java.util.Calendar;
 
+import exceptionsClass.AtributosNaoNulosNaoVaziosException;
+import exceptionsClass.CpfException;
 import exceptionsClass.DataNascimentoException;
 
 public class ValidacaoIO {
 
-	public static boolean validaCpf(String cpf) {
+	public static boolean validaCpf(String cpf) throws CpfException{
 		Boolean var = true;
 		String verifyCpf = cpf.replaceAll(" ", "");
 		verifyCpf = verifyCpf.trim();
@@ -40,7 +42,7 @@ public class ValidacaoIO {
 		return var;
 	}
 
-	public static Boolean verificacaoStringNula(String str) {
+	public static Boolean verificacaoStringNula(String str) throws AtributosNaoNulosNaoVaziosException {
 		boolean var = true;
 		if (str == null) {
 			var = true;
@@ -92,6 +94,23 @@ public class ValidacaoIO {
 			var = false;
 		}
 
+		return var;
+	}
+
+	public static Boolean validaApenasDeLetras(String palavra) {
+		Boolean var = false;
+		String verifyString = palavra.replaceAll(" ", "");
+		palavra = palavra.trim();
+
+		for (int i = 0; i < palavra.length(); i++) {
+			char c = verifyString.charAt(i);
+			if (Character.isLetter(c)) {
+				var = true;
+			} else {
+				var = false;
+				break;
+			}
+		}
 		return var;
 	}
 
