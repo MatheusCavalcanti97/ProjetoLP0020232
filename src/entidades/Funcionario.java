@@ -3,24 +3,29 @@ package entidades;
 import java.util.Date;
 import java.util.List;
 
+import exceptionsClass.AtributosNaoNulosNaoVaziosException;
+import exceptionsClass.CpfException;
+import exceptionsClass.EnderecoException;
+import exceptionsClass.TelefoneException;
 import modelo.CrudClass;
 import modelo.IFuncionario;
+import util.ValidacaoIO;
 
 public class Funcionario extends Pessoa implements CrudClass<Funcionario>, IFuncionario {
 
 	private String matriculaFunc;
 	private String cargo;
-	private double salarioBruto;
+	private double salario;
 	private Date dataDeAdmissao;
 	private double comissao;
 
 	public Funcionario(String cpfPessoa, String nome, Date dataNascimento, String email, Endereco endereco,
-			List<Telefone> telefone, String matriculaFunc, String cargo, double salarioBruto, Date dataDeAdmissao,
+			List<Telefone> telefone, String matriculaFunc, String cargo, double salario, Date dataDeAdmissao,
 			double comissao) {
 		super(cpfPessoa, nome, dataNascimento, email, endereco, telefone);
 		this.matriculaFunc = matriculaFunc;
 		this.cargo = cargo;
-		this.salarioBruto = salarioBruto;
+		this.salario = salario;
 		this.dataDeAdmissao = dataDeAdmissao;
 		this.comissao = comissao;
 	}
@@ -41,12 +46,12 @@ public class Funcionario extends Pessoa implements CrudClass<Funcionario>, IFunc
 		this.cargo = cargo;
 	}
 
-	public double getSalarioBruto() {
-		return salarioBruto;
+	public double getSalario() {
+		return salario;
 	}
 
-	public void setSalarioBruto(double salarioBruto) {
-		this.salarioBruto = salarioBruto;
+	public void setSalario(double salario) {
+		this.salario = salario;
 	}
 
 	public Date getDataDeAdmissao() {
@@ -66,9 +71,10 @@ public class Funcionario extends Pessoa implements CrudClass<Funcionario>, IFunc
 	}
 
 	@Override
-	public void inserir(Funcionario obj) {
-
+	public void inserir(Funcionario f) {
+			
 	}
+	
 
 	@Override
 	public void atualizar(Funcionario obj) {
@@ -82,8 +88,8 @@ public class Funcionario extends Pessoa implements CrudClass<Funcionario>, IFunc
 
 	@Override
 	public double calcularSalarioLiquido(Double comissao) {
-		
-		return 0;
+
+		return (this.salario + comissao);
 	}
 
 	@Override
@@ -94,6 +100,9 @@ public class Funcionario extends Pessoa implements CrudClass<Funcionario>, IFunc
 	@Override
 	public Funcionario buscarPorCpf(String cpf) {
 		return null;
+	}
+	public String toString() {
+		return this.nome + " " + this.matriculaFunc;
 	}
 
 }
