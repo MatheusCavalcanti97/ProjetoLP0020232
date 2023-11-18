@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import exceptionsClass.TelefoneException;
 
-public class ServiceSistema {
+public class SistemaService {
 
 	public static void main(String[] args) throws TelefoneException {
 		Integer opcaoMenu = null;
@@ -21,7 +21,7 @@ public class ServiceSistema {
 				opcaoMenu = ler.nextInt();
 
 			} catch (InputMismatchException e) {
-				System.out.println("\n------------------------------------");
+				System.out.println("\n\n------------------------------------");
 				System.out.println("Caracter Inserido Incorretamente.\nTente Novamente.");
 				System.out.println("\n------------------------------------");
 				continue;
@@ -33,7 +33,7 @@ public class ServiceSistema {
 				System.out.println("\n------------------------------------\n");
 				varFlagMenu = false;
 			} else if (opcaoMenu == 1) {
-				ServiceCliente.inserirCliente();
+				ClienteService.menuCliente();;
 			} else if (opcaoMenu == 2) {
 				
 			} else if (opcaoMenu == 3) {

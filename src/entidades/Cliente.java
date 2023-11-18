@@ -18,6 +18,10 @@ import util.ValidacaoIO;
 public class Cliente extends Pessoa implements CrudClass<Cliente>, ICliente {
 
 	private Date dataDeCadastro;
+	private List<Cliente> listaCliente = new ArrayList<>();
+	private static Cliente c;
+
+	public Cliente() { }
 
 	public Cliente(String cpfPessoa, String nome, Date dataNascimento, String email, Endereco endereco,
 			List<Telefone> telefone, Date dataDeCadastro) {
@@ -25,12 +29,12 @@ public class Cliente extends Pessoa implements CrudClass<Cliente>, ICliente {
 		this.dataDeCadastro = dataDeCadastro;
 	}
 
-	public Date getDataDeCadastro() {
-		return dataDeCadastro;
-	}
+	public static Cliente getInstance() {
+		if (c == null) {
+			c = new Cliente();
+		}
 
-	public void setDataDeCadastro(Date dataDeCadastro) {
-		this.dataDeCadastro = dataDeCadastro;
+		return c;
 	}
 
 	public void inserir(Cliente c)
@@ -42,7 +46,7 @@ public class Cliente extends Pessoa implements CrudClass<Cliente>, ICliente {
 						&& ValidacaoIO.verificacaoStringNula(c.getNome()) == false) {
 					if (c.getEndereco() != null) {
 						if (c.getTelefone().size() != 0) {
-							this.listarTodos().add(c);
+							Cliente.getInstance().listaCliente.add(c);
 						} else {
 							throw new TelefoneException(
 									"É necessário ser inserir todas as informações do Endereço do Cliente. Tente Novamente.\n");
@@ -81,13 +85,29 @@ public class Cliente extends Pessoa implements CrudClass<Cliente>, ICliente {
 
 	@Override
 	public List<Cliente> listarTodos() {
-		List<Cliente> listaC = new ArrayList<>();
-		return listaC;
+		List<Cliente> c = Cliente.getInstance().listaCliente;
+		return c;
 	}
 
 	@Override
 	public Cliente buscarPorCpf(String cpf) {
 		return null;
+	}
+
+	public List<Cliente> getListaCliente() {
+		return listaCliente;
+	}
+
+	public void setListaCliente(List<Cliente> listaCliente) {
+		this.listaCliente = listaCliente;
+	}
+
+	public Date getDataDeCadastro() {
+		return dataDeCadastro;
+	}
+
+	public void setDataDeCadastro(Date dataDeCadastro) {
+		this.dataDeCadastro = dataDeCadastro;
 	}
 
 	@Override
@@ -97,19 +117,14 @@ public class Cliente extends Pessoa implements CrudClass<Cliente>, ICliente {
 		String dataNasc1 = dF.format(this.dataNascimento);
 		String dataCadastro2 = dF.format(this.dataDeCadastro);
 
-		String returnInfo =  "CPF: " + this.cpfPessoa 
-				+ "\nNome: " + this.nome 
-				+ "\nData de Nascimento: " + dataNasc1 
-				+ "\nE-mail: " + this.email 
-				+ "\n---------- INFO ENDEREÇO ----------\n" 
-				+ "\nRua: " + this.getEndereco().getNomeRua()
-				+ "\nNúmero Imovél: " + this.getEndereco().getNumeroImovel() 
-				+ "\nCidade: "+ this.getEndereco().getCidade() 
-				+ "\nEstado: " + this.getEndereco().getEstado()
+		String returnInfo = "CPF: " + this.cpfPessoa + "\nNome: " + this.nome + "\nData de Nascimento: " + dataNasc1
+				+ "\nE-mail: " + this.email + "\n---------- INFO ENDEREÇO ----------\n" + "\nRua: "
+				+ this.getEndereco().getNomeRua() + "\nNúmero Imovél: " + this.getEndereco().getNumeroImovel()
+				+ "\nCidade: " + this.getEndereco().getCidade() + "\nEstado: " + this.getEndereco().getEstado()
 				+ "\nData de Cadastro: " + dataCadastro2;
-		
+
 		return returnInfo;
-		
+
 	}
 
 	@Override

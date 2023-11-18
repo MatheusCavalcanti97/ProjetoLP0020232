@@ -1,5 +1,5 @@
 package pacoteTesteSistema;
 
-public class ServiceVenda {
+public class ProdutoService {
 
 }

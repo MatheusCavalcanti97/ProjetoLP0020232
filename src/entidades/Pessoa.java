@@ -5,7 +5,7 @@ import java.util.List;
 
 import modelo.CrudClass;
 
-public abstract class Pessoa{
+public abstract class Pessoa {
 
 	public String cpfPessoa;
 	public String nome;
@@ -13,6 +13,8 @@ public abstract class Pessoa{
 	public String email;
 	public Endereco endereco;
 	public List<Telefone> telefone;
+
+	public Pessoa() { }
 
 	public Pessoa(String cpfPessoa, String nome, Date dataNascimento, String email, Endereco endereco,
 			List<Telefone> telefone) {

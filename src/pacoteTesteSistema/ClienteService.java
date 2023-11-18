@@ -18,22 +18,23 @@ import exceptionsClass.EnderecoException;
 import exceptionsClass.TelefoneException;
 import util.ValidacaoIO;
 
-public class ServiceCliente {
-	Scanner ler1 = new Scanner(System.in);
+public class ClienteService {
 
 	public static void menuCliente() throws TelefoneException {
 
-		Integer opcaoMenu = null;
+		Integer opcaoMenu2 = null;
 		boolean varFlagMenu = true;
 
 		while (varFlagMenu) {
-			System.out.println("\n------------------------------------");
-			System.out.println("Informe uma Opção." + "\n1. Inserir Info Pessoais." + "\n2. Atualizar Info Cliente."
-					+ "\n3. Deletar Cliente." + "\n4. Listar Cliente." + "\n0. Sair." + "-> ");
-			System.out.println("------------------------------------");
+
 			try {
 				Scanner ler = new Scanner(System.in);
-				opcaoMenu = ler.nextInt();
+				System.out.println("\n------------------------------------");
+				System.out.println("Informe uma Opção." + "\n1. Inserir Info Pessoais." + "\n2. Atualizar Info Cliente."
+						+ "\n3. Deletar Cliente." + "\n4. Listar Cliente." + "\n0. Sair." + "-> ");
+				System.out.println("------------------------------------");
+
+				opcaoMenu2 = ler.nextInt();
 
 			} catch (InputMismatchException e) {
 				System.out.println("\n------------------------------------");
@@ -42,18 +43,18 @@ public class ServiceCliente {
 				continue;
 			}
 
-			if (opcaoMenu == 0) {
+			if (opcaoMenu2 == 0) {
 				System.out.println("\n------------------------------------");
 				System.out.println("\nprograma Encerrado.\n");
 				System.out.println("\n------------------------------------\n");
 				varFlagMenu = false;
-			} else if (opcaoMenu == 1) {
+			} else if (opcaoMenu2 == 1) {
 				inserirCliente();
-			} else if (opcaoMenu == 2) {
+			} else if (opcaoMenu2 == 2) {
 				atualizar();
-			} else if (opcaoMenu == 3) {
+			} else if (opcaoMenu2 == 3) {
 				deletarCliente();
-			} else if (opcaoMenu == 4) {
+			} else if (opcaoMenu2 == 4) {
 				listarTodosClientes();
 			} else {
 				System.out.println("\n------------------------------------");
@@ -64,6 +65,17 @@ public class ServiceCliente {
 	}
 
 	public static void listarTodosClientes() {
+		Cliente c = Cliente.getInstance();
+		List<Cliente> c1 = c.listarTodos();
+		try {
+
+			for (int i = 0; i < c1.size(); i++) {
+				System.out.println(c1.get(i).getNome());
+			}
+
+		} catch (NullPointerException ex1) {
+			System.out.println("LISTA VAZIA");
+		}
 
 	}
 
@@ -104,11 +116,10 @@ public class ServiceCliente {
 			try {
 
 				Scanner ler2 = new Scanner(System.in);
-				
 
 				System.out.printf("\nINSIRA O NÚMERO DO CPF (Apenas Números): ");
 				cpf = ler2.nextLine();
-				
+
 				System.out.printf("\nNOME COMPLETO: ");
 				nome = ler2.nextLine();
 
@@ -129,6 +140,7 @@ public class ServiceCliente {
 				System.out.println("-- CLIENTE INSERIDO COM SUCESSO --");
 				System.out.println("-------------------------------------------------------");
 				System.out.println(c.toString());
+				c = null;
 				break;
 
 			} catch (CpfException ex1) {
@@ -177,7 +189,7 @@ public class ServiceCliente {
 		System.out.println("\n-------------------------------------------------------");
 		System.out.println("-- INFO. TELEFONE --");
 		System.out.println("---------------------------------------------------------");
-		
+
 		Scanner ler5 = new Scanner(System.in);
 		String dddTelefone = null, numeroTelefone = null;
 		Telefone telefone = null;
@@ -205,10 +217,10 @@ public class ServiceCliente {
 	}
 
 	private static Date inserirDataNascimento() throws ParseException {
-		System.out.println("\n-------------------------------------------------------");
+		System.out.println("-------------------------------------------------------");
 		System.out.println("-- INFO DATA NASCIMENTO --");
 		System.out.println("-------------------------------------------------------\n");
-		
+
 		Scanner ler = new Scanner(System.in);
 		Date dataNasc = new Date();
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -238,7 +250,7 @@ public class ServiceCliente {
 	}
 
 	private static Endereco inserirEndereco() {
-		
+
 		System.out.println("\n-------------------------------------------------------");
 		System.out.println("-- INFO. ENDEREÇO --");
 		System.out.println("-------------------------------------------------------");
