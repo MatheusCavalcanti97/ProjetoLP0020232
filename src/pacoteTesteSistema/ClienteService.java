@@ -63,13 +63,17 @@ public class ClienteService {
 
 				try {
 					atualizar();
-				} catch (ListaVaziaException ex2) {
+				} catch (ListaVaziaException ex1) {
+					System.out.printf("\n-------------------------------------------------------\n");
+					System.out.printf(ex1.getMessage());
+					System.out.printf("\n-------------------------------------------------------\n");
+				} catch (ClienteJaCadastradoException ex2) {
 					System.out.printf("\n-------------------------------------------------------\n");
 					System.out.printf(ex2.getMessage());
 					System.out.printf("\n-------------------------------------------------------\n");
-				} catch (ClienteJaCadastradoException ex1) {
+				} catch (Exception ex3) {
 					System.out.printf("\n-------------------------------------------------------\n");
-					System.out.printf(ex1.getMessage());
+					System.out.printf(ex3.getMessage());
 					System.out.printf("\n-------------------------------------------------------\n");
 				}
 
@@ -108,10 +112,9 @@ public class ClienteService {
 
 	}
 
-	public static void atualizar() throws ClienteJaCadastradoException, ListaVaziaException {
+	public static void atualizar() throws Exception {
 		Scanner ler = new Scanner(System.in);
-		
-		
+
 		String cpfC = null;
 		Boolean varFlag = true;
 		Integer opcaoAtualizao = null;
@@ -120,15 +123,15 @@ public class ClienteService {
 		System.out.printf("\nINICIANDO PROCESSO DE ATUALIZAÇÃO DE INFORMAÇÕES...\n");
 		System.out.printf("\n-------------------------------------------------------\n");
 
-		System.out.printf("\nInforme o cpf do Cliente que deseja Atualizar alguma informação: ");
-		cpfC = ler.nextLine();
-		
 		Cliente c = Cliente.getInstance();
-		
-		
+
+		System.out.printf("\n-------------------------------------------------------\n");
+		System.out.print("INFORME O CPF DE QUEM DESEJA ATUALIZAR INFORMAÇÕES: ");
+		cpfC = ler.nextLine();
+
 		if (c.cpfJaExiste(cpfC) == true) {
 			Cliente clienteUpdate = c.buscarPorCpf(cpfC);
-			
+
 			System.out.printf("\n-------------------------------------------------------\n");
 			System.out.printf("\nINFORMAÇÕES CORRETAS - PROSSEGUINDO...\n");
 			System.out.printf("\n-------------------------------------------------------\n");
@@ -136,7 +139,7 @@ public class ClienteService {
 			while (varFlag) {
 
 				try {
-					
+
 					Scanner ler2 = new Scanner(System.in);
 					System.out.printf("\n-------------------------------------------------------\n");
 					System.out.printf("Informe uma Opção." + "\n1. AtualizarEndereco." + "\n2. Atualizar Telefone."
@@ -177,6 +180,8 @@ public class ClienteService {
 					System.out.printf("\n-------------------------------------------------------\n");
 				}
 			}
+		} else {
+			throw new Exception("Cpf Incorreto Tente Novamente");
 		}
 	}
 
