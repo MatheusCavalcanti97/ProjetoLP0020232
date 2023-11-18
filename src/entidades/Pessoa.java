@@ -2,8 +2,7 @@ package entidades;
 
 import java.util.Date;
 import java.util.List;
-
-import modelo.CrudClass;
+import java.util.Objects;
 
 public abstract class Pessoa {
 
@@ -74,4 +73,24 @@ public abstract class Pessoa {
 	public void setTelefone(List<Telefone> telefone) {
 		this.telefone = telefone;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cpfPessoa, dataNascimento, email, endereco, nome, telefone);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pessoa other = (Pessoa) obj;
+		return Objects.equals(cpfPessoa, other.cpfPessoa) && Objects.equals(dataNascimento, other.dataNascimento)
+				&& Objects.equals(email, other.email) && Objects.equals(endereco, other.endereco)
+				&& Objects.equals(nome, other.nome) && Objects.equals(telefone, other.telefone);
+	}
+
 }

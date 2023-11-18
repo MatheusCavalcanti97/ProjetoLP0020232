@@ -2,6 +2,7 @@ package util;
 
 import java.text.ParseException;
 import java.util.Calendar;
+import java.util.List;
 
 import exceptionsClass.AtributosNaoNulosNaoVaziosException;
 import exceptionsClass.CpfException;
@@ -9,7 +10,7 @@ import exceptionsClass.DataNascimentoException;
 
 public class ValidacaoIO {
 
-	public static boolean validaCpf(String cpf) throws CpfException{
+	public static boolean validaCpf(String cpf) throws CpfException {
 		Boolean var = true;
 		String verifyCpf = cpf.replaceAll(" ", "");
 		verifyCpf = verifyCpf.trim();

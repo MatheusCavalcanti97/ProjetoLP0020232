@@ -12,28 +12,28 @@ public class SistemaService {
 		boolean varFlagMenu = true;
 
 		while (varFlagMenu) {
-			System.out.println("\n------------------------------------");
-			System.out.println("Informe uma Opção." + "\n1. Cliente." + "\n2. Funcionario."
+			System.out.printf("\n-------------------------------------------------------\n");
+			System.out.printf("Informe uma Opção." + "\n1. Cliente." + "\n2. Funcionario."
 					+ "\n3. Produto." + "\n4. Vendas." + "\n0. Sair." + "-> ");
-			System.out.println("------------------------------------");
+			System.out.printf("\n-------------------------------------------------------\n");
 			try {
 				Scanner ler = new Scanner(System.in);
 				opcaoMenu = ler.nextInt();
 
 			} catch (InputMismatchException e) {
-				System.out.println("\n\n------------------------------------");
-				System.out.println("Caracter Inserido Incorretamente.\nTente Novamente.");
-				System.out.println("\n------------------------------------");
+				System.out.printf("\n-------------------------------------------------------\n");
+				System.out.printf("Caracter Inserido Incorretamente.\nTente Novamente.");
+				System.out.printf("\n------------------------------------\n");
 				continue;
 			}
 
 			if (opcaoMenu == 0) {
-				System.out.println("\n------------------------------------");
-				System.out.println("\nprograma Encerrado.\n");
-				System.out.println("\n------------------------------------\n");
+				System.out.printf("\n-------------------------------------------------------\n");
+				System.out.printf("Programa Encerrado.");
+				System.out.printf("\n-------------------------------------------------------\n");
 				varFlagMenu = false;
 			} else if (opcaoMenu == 1) {
-				ClienteService.menuCliente();;
+				ClienteService.menuCliente();
 			} else if (opcaoMenu == 2) {
 				
 			} else if (opcaoMenu == 3) {
@@ -41,9 +41,9 @@ public class SistemaService {
 			}else if (opcaoMenu == 4) {
 				
 			}else {
-				System.out.println("\n------------------------------------");
-				System.out.println("\nInsira uma Opção Correta para o Menu..\n");
-				System.out.println("\n------------------------------------\n");
+				System.out.printf("\n-------------------------------------------------------\n");
+				System.out.printf("Insira uma Opção Correta para o Menu...");
+				System.out.printf("\n-------------------------------------------------------\n");
 			}
 		}
 	}

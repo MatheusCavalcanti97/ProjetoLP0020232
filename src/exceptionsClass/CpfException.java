@@ -1,6 +1,6 @@
 package exceptionsClass;
 
-public class CpfException extends Exception {
+public class CpfException extends IllegalArgumentException {
 
 	private static final long serialVersionUID = 6949644602875796614L;
 
