@@ -11,7 +11,7 @@ import modelo.CrudClass;
 import modelo.IFuncionario;
 import util.ValidacaoIO;
 
-public class Funcionario extends Pessoa implements CrudClass<Funcionario>, IFuncionario {
+public class Funcionario extends Pessoa implements IFuncionario {
 
 	private String matriculaFunc;
 	private String cargo;
@@ -70,38 +70,15 @@ public class Funcionario extends Pessoa implements CrudClass<Funcionario>, IFunc
 		this.comissao = comissao;
 	}
 
-	@Override
-	public void inserir(Funcionario f) {
-			
-	}
 	
-
-	@Override
-	public void atualizar(Funcionario obj) {
-
-	}
-
-	@Override
-	public void deletar(Funcionario obj) {
-
+	public String toString() {
+		return "Nome: " + this.nome + " Matrícula: " + this.matriculaFunc;
 	}
 
 	@Override
 	public double calcularSalarioLiquido(Double comissao) {
-		return (this.salario + comissao);
-	}
-
-	@Override
-	public List<Funcionario> listarTodos() {
-		return null;
-	}
-
-	@Override
-	public Funcionario buscarPorCpf(String cpf) {
-		return null;
-	}
-	public String toString() {
-		return this.nome + " " + this.matriculaFunc;
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
