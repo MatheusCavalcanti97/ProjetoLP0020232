@@ -15,7 +15,7 @@ public interface CrudClass<T> {
 
 	public void atualizar(T obj);
 
-	public void deletar(T obj);
+	public void deletar(T obj) throws ListaVaziaException;
 
 	public List<T> listarTodos() throws ListaVaziaException;
 

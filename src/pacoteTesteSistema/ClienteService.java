@@ -15,6 +15,7 @@ import entidades.Telefone;
 import exceptionsClass.AtributosNaoNulosNaoVaziosException;
 import exceptionsClass.ClienteJaCadastradoException;
 import exceptionsClass.CpfException;
+import exceptionsClass.DataNascimentoException;
 import exceptionsClass.EnderecoException;
 import exceptionsClass.ListaVaziaException;
 import exceptionsClass.TelefoneException;
@@ -52,10 +53,16 @@ public class ClienteService {
 				varFlagMenu = false;
 			} else if (opcaoMenu2 == 1) {
 				try {
+
 					inserirCliente();
+
 				} catch (CpfException ex1) {
 					System.out.printf("\n-------------------------------------------------------\n");
 					System.out.printf(ex1.getMessage());
+					System.out.printf("\n-------------------------------------------------------\n");
+				} catch (DataNascimentoException ex2) {
+					System.out.printf("\n-------------------------------------------------------\n");
+					System.out.printf(ex2.getMessage());
 					System.out.printf("\n-------------------------------------------------------\n");
 				}
 
@@ -78,7 +85,13 @@ public class ClienteService {
 				}
 
 			} else if (opcaoMenu2 == 3) {
-				deletarCliente();
+				try {
+					deletarCliente();
+				} catch (Exception ex1) {
+					System.out.printf("\n-------------------------------------------------------\n");
+					System.out.printf(ex1.getMessage());
+					System.out.printf("\n-------------------------------------------------------\n");
+				}
 			} else if (opcaoMenu2 == 4) {
 
 				try {
@@ -112,47 +125,47 @@ public class ClienteService {
 
 	}
 
-	public static void atualizar() throws Exception {
+	public static void atualizar() throws ClienteJaCadastradoException, ListaVaziaException {
 		Scanner ler = new Scanner(System.in);
 
-		String cpfC = null;
-		Boolean varFlag = true;
+		Cliente cc2 = null;
+		Cliente c = Cliente.getInstance();
+		List<Cliente> c1 = c.listarTodos();
+		String cpfC = "";
+		Boolean varFlag = false;
 		Integer opcaoAtualizao = null;
 
 		System.out.printf("\n-------------------------------------------------------\n");
-		System.out.printf("\nINICIANDO PROCESSO DE ATUALIZAÇÃO DE INFORMAÇÕES...\n");
-		System.out.printf("\n-------------------------------------------------------\n");
-
-		Cliente c = Cliente.getInstance();
-
-		System.out.printf("\n-------------------------------------------------------\n");
-		System.out.print("INFORME O CPF DE QUEM DESEJA ATUALIZAR INFORMAÇÕES: ");
+		System.out.printf("CLIENTE ENCONTRADO - PROSSEGUINDO...\n");
+		System.out.printf("\nInforme o CPF de quem Deseja Atualizar as Informações: ");
 		cpfC = ler.nextLine();
 
-		if (c.cpfJaExiste(cpfC) == true) {
-			Cliente clienteUpdate = c.buscarPorCpf(cpfC);
+		for (int i = 0; i < c1.size(); i++) {
 
-			System.out.printf("\n-------------------------------------------------------\n");
-			System.out.printf("\nINFORMAÇÕES CORRETAS - PROSSEGUINDO...\n");
-			System.out.printf("\n-------------------------------------------------------\n");
+			if (c1.get(i).getCpfPessoa().equals(cpfC)) {
+				cc2 = c1.get(i);
+				varFlag = true;
+			}
 
+		}
+
+		System.out.printf("\n-------------------------------------------------------\n");
+		System.out.printf("\nINFORMAÇÕES CORRETAS - PROSSEGUINDO...\n");
+
+		if (varFlag == true) {
 			while (varFlag) {
 
 				try {
 
-					Scanner ler2 = new Scanner(System.in);
 					System.out.printf("\n-------------------------------------------------------\n");
-					System.out.printf("Informe uma Opção." + "\n1. AtualizarEndereco." + "\n2. Atualizar Telefone."
-							+ "\n3. Atualizar E-mail." + "\n0. Sair." + "-> ");
-
-					opcaoAtualizao = ler2.nextInt();
+					System.out.printf("Informe uma Opção." + "\n1. Atualizar Endereço." + "\n0. Sair." + "-> ");
+					opcaoAtualizao = ler.nextInt();
 					System.out.printf("\n-------------------------------------------------------\n");
 				} catch (InputMismatchException e) {
 					System.out.printf("\n-------------------------------------------------------\n");
 					System.out.printf("\nCaracter Inserido Incorretamente.\nTente Novamente.");
 					System.out.printf("\n-------------------------------------------------------\n");
 					continue;
-
 				}
 
 				if (opcaoAtualizao == 0) {
@@ -163,33 +176,94 @@ public class ClienteService {
 				} else if (opcaoAtualizao == 1) {
 
 					Endereco end = inserirEndereco();
-					clienteUpdate.setEndereco(end);
-					clienteUpdate.atualizar(clienteUpdate);
+					cc2.setEndereco(end);
+					cc2.atualizar(cc2);
 					System.out.printf("\n-------------------------------------------------------\n");
 					System.out.printf("\nCLIENTE ATUALIZADO COM SUCESSO...\n");
 					System.out.printf("\n-------------------------------------------------------\n");
-					System.out.println(clienteUpdate.toString());
-
-				} else if (opcaoAtualizao == 2) {
-
-				} else if (opcaoAtualizao == 3) {
+					System.out.println(c1.toString());
 
 				} else {
 					System.out.printf("\n-------------------------------------------------------\n");
 					System.out.printf("\nopção Inserida Incorretamente.\nTente Novamente.");
 					System.out.printf("\n-------------------------------------------------------\n");
 				}
+
 			}
 		} else {
-			throw new Exception("Cpf Incorreto Tente Novamente");
+			throw new CpfException("Cpf Incorreto.");
+		}
+
+	}
+
+	public static void deletarCliente() throws Exception {
+		Scanner ler = new Scanner(System.in);
+
+		Cliente cc2 = null;
+		Cliente c = Cliente.getInstance();
+		List<Cliente> c1 = c.listarTodos();
+		String cpfC = "";
+		Boolean varFlag = false;
+		Integer opcaoAtualizao = null;
+		
+		System.out.printf("\n-------------------------------------------------------\n");
+		System.out.printf("CLIENTE ENCONTRADO - PROSSEGUINDO...\n");
+		System.out.printf("\nInforme o CPF de quem Deseja Atualizar as Informações: ");
+		cpfC = ler.nextLine();
+
+		for (int i = 0; i < c1.size(); i++) {
+
+			if (c1.get(i).getCpfPessoa().equals(cpfC)) {
+				cc2 = c1.get(i);
+				varFlag = true;
+			}
+		}
+
+		System.out.printf("\n-------------------------------------------------------\n");
+		System.out.printf("\nCLIENTE ENCONTRADO - PROSSEGUINDO...\n");
+
+		if (varFlag == true) {
+			while (varFlag) {
+
+				try {
+
+					System.out.printf("\n-------------------------------------------------------\n");
+					System.out.printf("Informe uma Opção." + "\n1. Deletar." + "\n0. Sair." + "-> ");
+					opcaoAtualizao = ler.nextInt();
+					System.out.printf("\n-------------------------------------------------------\n");
+				} catch (InputMismatchException e) {
+					System.out.printf("\n-------------------------------------------------------\n");
+					System.out.printf("\nCaracter Inserido Incorretamente.\nTente Novamente.");
+					System.out.printf("\n-------------------------------------------------------\n");
+					continue;
+				}
+
+				if (opcaoAtualizao == 0) {
+					System.out.printf("\n-------------------------------------------------------\n");
+					System.out.printf("\nRETORNANDO PRO MENU ANTERIOR...\n");
+					System.out.printf("\n-------------------------------------------------------\n");
+					varFlag = false;
+				} else if (opcaoAtualizao == 1) {
+
+					cc2.deletar(cc2);
+					System.out.printf("\n-------------------------------------------------------\n");
+					System.out.printf("\nCLIENTE DELETADO COM SUCESSO...\n");
+					System.out.printf("\n-------------------------------------------------------\n");
+
+
+				} else {
+					System.out.printf("\n-------------------------------------------------------\n");
+					System.out.printf("\nopção Inserida Incorretamente.\nTente Novamente.");
+					System.out.printf("\n-------------------------------------------------------\n");
+				}
+
+			}
+		} else {
+			throw new CpfException("Cpf Incorreto.");
 		}
 	}
 
-	public static void deletarCliente() {
-
-	}
-
-	public static void inserirCliente() {
+	public static void inserirCliente() throws DataNascimentoException {
 
 		boolean flagParada = true;
 		Endereco end = null;
@@ -366,7 +440,7 @@ public class ClienteService {
 
 	}
 
-	private static Date inserirDataNascimento() throws ParseException {
+	private static Date inserirDataNascimento() throws ParseException, DataNascimentoException {
 		System.out.println("\n-------------------------------------------------------");
 		System.out.println("-- INFO DATA NASCIMENTO --");
 		System.out.println("-------------------------------------------------------");
@@ -389,16 +463,13 @@ public class ClienteService {
 		if (ValidacaoIO.validarData(dia, mes, ano) == true) {
 			str = dia + "/" + mes + "/" + ano;
 			str = str.replaceAll(" ", "");
-			try {
-				dataNasc = formato.parse(str);
-			} catch (ParseException pe) {
-				throw new ParseException("INSIRA UMA DATA VÁLIDA.", 1);
-			}
+			dataNasc = formato.parse(str);
 
+		} else {
+			throw new DataNascimentoException("Data Incorreta!!");
 		}
 
 		return dataNasc;
-
 	}
 
 	private static Endereco inserirEndereco() {

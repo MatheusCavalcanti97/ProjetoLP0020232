@@ -49,7 +49,7 @@ public class Cliente extends Pessoa implements CrudClass<Cliente>, ICliente {
 						&& ValidacaoIO.verificacaoStringNula(c.getNome()) == false) {
 					if (c.getEndereco() != null) {
 						if (c.getTelefone().size() != 0) {
-							Cliente.getInstance().listaCliente.add(c);
+							this.listaCliente.add(c);
 						} else {
 							throw new TelefoneException("INSIRA CORRETAMENTE AS INFORMAÇÕES DO TELEFONE!\n");
 						}
@@ -70,18 +70,24 @@ public class Cliente extends Pessoa implements CrudClass<Cliente>, ICliente {
 
 	@Override
 	public void atualizar(Cliente c) {
-		List<Cliente> cList = Cliente.getInstance().listaCliente;
-		for (int i = 0; i < Cliente.getInstance().listaCliente.size(); i++) {
+		List<Cliente> cList = this.listaCliente;
+		for (int i = 0; i < cList.size(); i++) {
 			if (c.getCpfPessoa().equals(cList.get(i).getCpfPessoa())) {
 				cList.get(i).setEndereco(c.getEndereco());
-				;
 			}
 		}
 
 	}
 
 	@Override
-	public void deletar(Cliente c) {
+	public void deletar(Cliente c) throws ListaVaziaException {
+
+		List<Cliente> cList = Cliente.getInstance().listarTodos();
+		for (int i = 0; i < cList.size(); i++) {
+			if (c.getCpfPessoa().equals(cList.get(i).getCpfPessoa())) {
+				Cliente.getInstance().listaCliente.remove(i);
+			}
+		}
 
 	}
 
@@ -92,7 +98,7 @@ public class Cliente extends Pessoa implements CrudClass<Cliente>, ICliente {
 
 	@Override
 	public List<Cliente> listarTodos() throws ListaVaziaException {
-		List<Cliente> c = Cliente.getInstance().listaCliente;
+		List<Cliente> c = this.listaCliente;
 		if (c.size() < 1) {
 			throw new ListaVaziaException("Nenhum Cliente Cadastrado!");
 		}
@@ -102,19 +108,18 @@ public class Cliente extends Pessoa implements CrudClass<Cliente>, ICliente {
 	@Override
 	public Cliente buscarPorCpf(String cpf) throws ClienteJaCadastradoException, ListaVaziaException {
 		Cliente c1 = null;
-		List<Cliente> c = Cliente.getInstance().listaCliente;
-
-		if (Cliente.getInstance().listaCliente.size() < 1) {
-			c1 = null;
+		List<Cliente> c = Cliente.getInstance().getListaCliente();
+		if (c.size() < 1) {
 			throw new ListaVaziaException("NENHUM CLIENTE CADASTRADO!");
 		}
 
 		for (int i = 0; i < c.size(); i++) {
-			if ((cpf.equals(c.get(i).getCpfPessoa()))) {
+			if (cpf.equals(c.get(i).getCpfPessoa())) {
 				c1 = c.get(i);
+				return c1;
 			} else {
 				c1 = null;
-				throw new ClienteJaCadastradoException("Cliente Não Cadastrado!");
+				throw new ClienteJaCadastradoException("CLIENTE NÃO CADASTRADO!");
 			}
 
 		}
@@ -124,7 +129,7 @@ public class Cliente extends Pessoa implements CrudClass<Cliente>, ICliente {
 
 	public Boolean cpfJaExiste(String cpf) {
 		Boolean b = false;
-		List<Cliente> c = Cliente.getInstance().listaCliente;
+		List<Cliente> c = this.listaCliente;
 
 		for (int i = 0; i < c.size(); i++) {
 			if (cpf.equals(c.get(i).getCpfPessoa())) {
@@ -143,11 +148,12 @@ public class Cliente extends Pessoa implements CrudClass<Cliente>, ICliente {
 		String dataNasc1 = dF.format(this.dataNascimento);
 		String dataCadastro2 = dF.format(this.dataDeCadastro);
 
-		String returnInfo = "CPF: " + this.cpfPessoa + "\nNome: " + this.nome + "\nData de Nascimento: " + dataNasc1
-				+ "\nE-mail: " + this.email + "\n\n---------- INFO ENDEREÇO ----------" + "\nRua: "
-				+ this.getEndereco().getNomeRua() + "\nNúmero Imovél: " + this.getEndereco().getNumeroImovel()
-				+ "\nCidade: " + this.getEndereco().getCidade() + "\nEstado: " + this.getEndereco().getEstado()
-				+ "\nData de Cadastro: " + dataCadastro2;
+		String returnInfo = "\n\n-------------------------------------------------------\nCPF: " + this.cpfPessoa
+				+ "\nNome: " + this.nome + "\nData de Nascimento: " + dataNasc1 + "\nE-mail: " + this.email
+				+ "\n\n---------- INFO ENDEREÇO ----------" + "\nRua: " + this.getEndereco().getNomeRua()
+				+ "\nNúmero Imovél: " + this.getEndereco().getNumeroImovel() + "\nCidade: "
+				+ this.getEndereco().getCidade() + "\nEstado: " + this.getEndereco().getEstado()
+				+ "\nData de Cadastro: " + dataCadastro2 + "\n";
 
 		return returnInfo;
 
@@ -158,7 +164,7 @@ public class Cliente extends Pessoa implements CrudClass<Cliente>, ICliente {
 	}
 
 	public void setListaCliente(List<Cliente> listaCliente) {
-		this.listaCliente = Cliente.getInstance().listaCliente;
+		this.listaCliente = listaCliente;
 	}
 
 	public Date getDataDeCadastro() {
