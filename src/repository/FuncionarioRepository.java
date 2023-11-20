@@ -9,8 +9,9 @@ import exceptionsClass.CpfException;
 import exceptionsClass.EnderecoException;
 import exceptionsClass.ListaVaziaException;
 import exceptionsClass.TelefoneException;
+import modelo.CrudClass;
 
-public class FuncionarioRepository implements CrudRepository<Funcionario>{
+public class FuncionarioRepository implements CrudClass<Funcionario>{
 	
 	private static FuncionarioRepository instance; 
 	
@@ -31,8 +32,7 @@ public class FuncionarioRepository implements CrudRepository<Funcionario>{
 	}
 
 	@Override
-	public void inserir(Funcionario obj) throws TelefoneException, EnderecoException, CpfException,
-			AtributosNaoNulosNaoVaziosException, ClienteJaCadastradoException, ListaVaziaException {
+	public void inserir(Funcionario obj)  {
 		
 	}
 
@@ -51,16 +51,6 @@ public class FuncionarioRepository implements CrudRepository<Funcionario>{
 	public List<Funcionario> listarTodos() throws ListaVaziaException {
 		for(Funcionario funcionario : listFuncionario) {
 			System.out.println(funcionario.toString());
-		}
-		return null;
-	}
-
-	@Override
-	public Funcionario buscarPorCpf(String cpf) throws ClienteJaCadastradoException, ListaVaziaException {
-		for(Funcionario funcionario : listFuncionario) {
-			if(funcionario.cpfPessoa.equals(cpf)) {
-				return funcionario;
-			}
 		}
 		return null;
 	}

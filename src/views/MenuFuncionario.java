@@ -30,6 +30,11 @@ public class MenuFuncionario {
 			System.out.println("5. Voltar");
 
 			opcao = sc.nextInt();
+			
+			
+			
+			
+			
 		}
 
 	}

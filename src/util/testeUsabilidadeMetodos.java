@@ -58,10 +58,10 @@ public class testeUsabilidadeMetodos {
 //    	
 //    	System.out.println(dataStr);
 
-//		String dentroDoSistema = "Maca3", foraDoSistema = "Maçã";
-//
-//		System.out.println(ValidacaoIO.removeAcentos(dentroDoSistema));
-//		System.out.println(ValidacaoIO.removeAcentos(foraDoSistema));
+		String dentroDoSistema = "Maca", foraDoSistema = "Maçã";
+
+		System.out.println(ValidacaoIO.removeAcentos(dentroDoSistema));
+		System.out.println(ValidacaoIO.removeAcentos(foraDoSistema));
 
 	}
 }
