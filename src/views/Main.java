@@ -36,7 +36,7 @@ public class Main {
 			} else if (opcaoMenu == 2) {
 				MenuFuncionario.getInstance().opcoesFuncionario();
 			} else if(opcaoMenu == 3) {
-				
+					MenuEstoque.menuEstoque();
 			} else if(opcaoMenu == 4){
 				
 			} else if(opcaoMenu == 5) {

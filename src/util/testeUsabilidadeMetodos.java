@@ -15,7 +15,7 @@ public class testeUsabilidadeMetodos {
 //		System.out.println(ValidacaoIO.verificacaoStringNula(b));
 //		System.out.println(ValidacaoIO.validaApenasDeLetras(a));
 
-		//formatando
+		// formatando
 //		Date dataInscricao = new Date();
 //		DateFormat  dF = new SimpleDateFormat("dd/MM/yyyy");
 //		String resp = dF.format(dataInscricao);
@@ -57,6 +57,11 @@ public class testeUsabilidadeMetodos {
 //    	data = sdf.parse(dataStr);
 //    	
 //    	System.out.println(dataStr);
+
+//		String dentroDoSistema = "Maca3", foraDoSistema = "Maçã";
+//
+//		System.out.println(ValidacaoIO.removeAcentos(dentroDoSistema));
+//		System.out.println(ValidacaoIO.removeAcentos(foraDoSistema));
 
 	}
 }

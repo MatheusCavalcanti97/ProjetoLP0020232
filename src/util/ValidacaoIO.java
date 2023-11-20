@@ -1,5 +1,6 @@
 package util;
 
+import java.text.Normalizer;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.List;
@@ -113,6 +114,10 @@ public class ValidacaoIO {
 			}
 		}
 		return var;
+	}
+	
+	public static String removeAcentos(String str) {
+	    return Normalizer.normalize(str, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
 	}
 
 }

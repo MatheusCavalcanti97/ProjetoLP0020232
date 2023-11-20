@@ -31,7 +31,6 @@ public class ClienteRepository {
 
 		System.out.printf("\n-------------------------------------------------------");
 		System.out.printf("\nTODOS CLIENTE CADASTRADOS EM NOSSA BASE DE DADOS...\n");
-		System.out.printf("\n-------------------------------------------------------\n");
 
 		for (int i = 0; i < c1.size(); i++) {
 			System.out.printf(c1.get(i).toString());
@@ -95,8 +94,8 @@ public class ClienteRepository {
 					System.out.printf("\n-------------------------------------------------------\n");
 					System.out.printf("\nCLIENTE ATUALIZADO COM SUCESSO...\n");
 					System.out.printf("\n-------------------------------------------------------\n");
-					System.out.println(c1.toString());
-
+					System.out.println(cc2.toString());
+					varFlag = false;
 				} else {
 					System.out.printf("\n-------------------------------------------------------\n");
 					System.out.printf("\nopção Inserida Incorretamente.\nTente Novamente.");
@@ -163,6 +162,7 @@ public class ClienteRepository {
 					System.out.printf("\n-------------------------------------------------------\n");
 					System.out.printf("\nCLIENTE DELETADO COM SUCESSO...\n");
 					System.out.printf("\n-------------------------------------------------------\n");
+					varFlag = false;
 
 				} else {
 					System.out.printf("\n-------------------------------------------------------\n");
