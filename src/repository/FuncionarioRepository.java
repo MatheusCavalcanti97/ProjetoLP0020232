@@ -17,38 +17,32 @@ public class FuncionarioRepository implements CrudClass<Funcionario>{
 	
 	private List<Funcionario> listFuncionario;
 	
-	private FuncionarioRepository (List<Funcionario> listFuncionario) {
-		
-		this.listFuncionario = listFuncionario;
-		
-	}
-	
-	public static synchronized FuncionarioRepository getInstance(List<Funcionario> listFuncionario) {
+	public static synchronized FuncionarioRepository getInstance() {
 		
 		if(instance == null) {
-			instance = new FuncionarioRepository(listFuncionario);
+			instance = new FuncionarioRepository();
 		}
 		return instance;
 	}
 
 	@Override
-	public void inserir(Funcionario obj)  {
+	public void inserir()  {
 		
 	}
 
 	@Override
-	public void atualizar(Funcionario obj) {
-		listFuncionario.add(obj);
+	public void atualizar() {
+//		listFuncionario.add(obj);
 		
 	}
 
 	@Override
-	public void deletar(Funcionario obj) {
+	public void deletar() {
 		
 	}
 
 	@Override
-	public List<Funcionario> listarTodos() throws ListaVaziaException {
+	public List<Funcionario> listarTodos(){
 		for(Funcionario funcionario : listFuncionario) {
 			System.out.println(funcionario.toString());
 		}

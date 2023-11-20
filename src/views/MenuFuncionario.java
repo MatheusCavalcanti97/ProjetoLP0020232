@@ -2,6 +2,8 @@ package views;
 
 import java.util.Scanner;
 
+import repository.FuncionarioRepository;
+
 public class MenuFuncionario {
 
 	Scanner sc = new Scanner(System.in);
@@ -31,7 +33,9 @@ public class MenuFuncionario {
 
 			opcao = sc.nextInt();
 			
-			
+			if (opcao == 1) {
+				FuncionarioRepository.getInstance().inserir();;
+			}
 			
 			
 			

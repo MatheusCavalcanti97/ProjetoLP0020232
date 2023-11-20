@@ -38,42 +38,42 @@ public class MenuEstoque {
 				System.out.printf("\n-------------------------------------------------------\n");
 				varFlagMenu = false;
 			} else if (opcaoMenu2 == 1) {
-				try {
-					EstoqueRepository.inserirEstoque();
-				} catch (AtributosNaoNulosNaoVaziosException e) {
-					System.out.println("\n-------------------------------------------------------\n");
-					System.out.println(e.getMessage());
-				} catch (EstoqueUnicoException ex2) {
-					System.out.println("\n-------------------------------------------------------\n");
-					System.out.println(ex2.getMessage());
-				}
+//				try {
+//					EstoqueRepository.inserirEstoque();
+//				} catch (AtributosNaoNulosNaoVaziosException e) {
+//					System.out.println("\n-------------------------------------------------------\n");
+//					System.out.println(e.getMessage());
+//				} catch (EstoqueUnicoException ex2) {
+//					System.out.println("\n-------------------------------------------------------\n");
+//					System.out.println(ex2.getMessage());
+//				}
 			} else if (opcaoMenu2 == 2) {
-				try {
-					EstoqueRepository.atualizarEstoque();
-				} catch (ListaVaziaException ex1) {
-					System.out.println("\n-------------------------------------------------------\n");
-					System.out.println(ex1.getMessage());
-				} catch (EstoqueUnicoException ex2) {
-					System.out.println("\n-------------------------------------------------------\n");
-					System.out.println(ex2.getMessage());
-				}
+//				try {
+//					EstoqueRepository.atualizarEstoque();
+//				} catch (ListaVaziaException ex1) {
+//					System.out.println("\n-------------------------------------------------------\n");
+//					System.out.println(ex1.getMessage());
+//				} catch (EstoqueUnicoException ex2) {
+//					System.out.println("\n-------------------------------------------------------\n");
+//					System.out.println(ex2.getMessage());
+//				}
 			} else if (opcaoMenu2 == 3) {
-				try {
-					EstoqueRepository.deletarEstoque();
-				} catch (EstoqueUnicoException ex1) {
-					System.out.println("\n-------------------------------------------------------\n");
-					System.out.println(ex1.getMessage());
-				} catch (ListaVaziaException ex2) {
-					System.out.println("\n-------------------------------------------------------\n");
-					System.out.println(ex2.getMessage());
-				}
+//				try {
+//					EstoqueRepository.deletarEstoque();
+//				} catch (EstoqueUnicoException ex1) {
+//					System.out.println("\n-------------------------------------------------------\n");
+//					System.out.println(ex1.getMessage());
+//				} catch (ListaVaziaException ex2) {
+//					System.out.println("\n-------------------------------------------------------\n");
+//					System.out.println(ex2.getMessage());
+//				}
 			} else if (opcaoMenu2 == 4) {
-				try {
-					EstoqueRepository.listaEstoqueAll();
-				} catch (ListaVaziaException ex1) {
-					System.out.println("\n-------------------------------------------------------\n");
-					System.out.println(ex1.getMessage());
-				}
+//				try {
+//					EstoqueRepository.listaEstoqueAll();
+//				} catch (ListaVaziaException ex1) {
+//					System.out.println("\n-------------------------------------------------------\n");
+//					System.out.println(ex1.getMessage());
+//				}
 			} else {
 				System.out.printf("\n-------------------------------------------------------");
 				System.out.printf("\nInsira uma Opção Correta para o Menu Estoque...\n");

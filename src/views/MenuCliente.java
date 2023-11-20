@@ -39,55 +39,55 @@ public class MenuCliente {
 				System.out.printf("\n-------------------------------------------------------\n");
 				varFlagMenu = false;
 			} else if (opcaoMenu2 == 1) {
-				try {
-
-					ClienteRepository.inserirCliente();
-
-				} catch (CpfException ex1) {
-					System.out.printf("\n-------------------------------------------------------\n");
-					System.out.printf(ex1.getMessage());
-					System.out.printf("\n-------------------------------------------------------\n");
-				} catch (DataNascimentoException ex2) {
-					System.out.printf("\n-------------------------------------------------------\n");
-					System.out.printf(ex2.getMessage());
-					System.out.printf("\n-------------------------------------------------------\n");
-				}
+//				try {
+//
+//					ClienteRepository.inserirCliente();
+//
+//				} catch (CpfException ex1) {
+//					System.out.printf("\n-------------------------------------------------------\n");
+//					System.out.printf(ex1.getMessage());
+//					System.out.printf("\n-------------------------------------------------------\n");
+//				} catch (DataNascimentoException ex2) {
+//					System.out.printf("\n-------------------------------------------------------\n");
+//					System.out.printf(ex2.getMessage());
+//					System.out.printf("\n-------------------------------------------------------\n");
+//				}
 
 			} else if (opcaoMenu2 == 2) {
 
-				try {
-					ClienteRepository.atualizar();
-				} catch (ListaVaziaException ex1) {
-					System.out.printf("\n-------------------------------------------------------\n");
-					System.out.printf(ex1.getMessage());
-					System.out.printf("\n-------------------------------------------------------\n");
-				} catch (ClienteJaCadastradoException ex2) {
-					System.out.printf("\n-------------------------------------------------------\n");
-					System.out.printf(ex2.getMessage());
-					System.out.printf("\n-------------------------------------------------------\n");
-				} catch (Exception ex3) {
-					System.out.printf("\n-------------------------------------------------------\n");
-					System.out.printf(ex3.getMessage());
-					System.out.printf("\n-------------------------------------------------------\n");
-				}
+//				try {
+//					ClienteRepository.atualizar();
+//				} catch (ListaVaziaException ex1) {
+//					System.out.printf("\n-------------------------------------------------------\n");
+//					System.out.printf(ex1.getMessage());
+//					System.out.printf("\n-------------------------------------------------------\n");
+//				} catch (ClienteJaCadastradoException ex2) {
+//					System.out.printf("\n-------------------------------------------------------\n");
+//					System.out.printf(ex2.getMessage());
+//					System.out.printf("\n-------------------------------------------------------\n");
+//				} catch (Exception ex3) {
+//					System.out.printf("\n-------------------------------------------------------\n");
+//					System.out.printf(ex3.getMessage());
+//					System.out.printf("\n-------------------------------------------------------\n");
+//				}
 
 			} else if (opcaoMenu2 == 3) {
-				try {
-					ClienteRepository.deletarCliente();;
-				} catch (Exception ex1) {
-					System.out.printf("\n-------------------------------------------------------\n");
-					System.out.printf(ex1.getMessage());
-					System.out.printf("\n-------------------------------------------------------\n");
-				}
+//				try {
+//					ClienteRepository.deletarCliente();;
+//				} catch (Exception ex1) {
+//					System.out.printf("\n-------------------------------------------------------\n");
+//					System.out.printf(ex1.getMessage());
+//					System.out.printf("\n-------------------------------------------------------\n");
+//				}
 			} else if (opcaoMenu2 == 4) {
 
-				try {
-					ClienteRepository.listarTodosClientes();;
-				} catch (ListaVaziaException e) {
-					System.out.printf("\n-------------------------------------------------------\n");
-					System.out.printf(e.getMessage());
-					System.out.printf("\n-------------------------------------------------------\n");
-				}
+//				try {
+//					ClienteRepository.listarTodosClientes();;
+//				} catch (ListaVaziaException e) {
+//					System.out.printf("\n-------------------------------------------------------\n");
+//					System.out.printf(e.getMessage());
+//					System.out.printf("\n-------------------------------------------------------\n");
+//				}
 
 			} else {
 				System.out.printf("\n-------------------------------------------------------");

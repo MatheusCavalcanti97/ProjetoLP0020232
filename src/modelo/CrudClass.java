@@ -12,12 +12,12 @@ import exceptionsClass.TelefoneException;
 
 public interface CrudClass<T> {
 
-	public void inserir(T obj) throws TelefoneException, EnderecoException, CpfException, AtributosNaoNulosNaoVaziosException, ClienteJaCadastradoException, ListaVaziaException, NullPointerException, EstoqueUnicoException;
+	public void inserir();
 
-	public void atualizar(T obj);
+	public void atualizar();
 
-	public void deletar(T obj) throws ListaVaziaException;
+	public void deletar();
 
-	public List<T> listarTodos() throws ListaVaziaException;
+	public List<T> listarTodos();
 
 }
