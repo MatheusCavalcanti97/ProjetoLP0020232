@@ -3,18 +3,18 @@ package util;
 import java.text.Normalizer;
 import java.text.ParseException;
 import java.util.Calendar;
-import java.util.List;
 
+import exceptionsClass.ApenasLetrasException;
 import exceptionsClass.AtributosNaoNulosNaoVaziosException;
 import exceptionsClass.CpfException;
-import exceptionsClass.DataNascimentoException;
+import exceptionsClass.TelefoneException;
 
 public class ValidacaoIO {
 
 	public static boolean validaCpf(String cpf) throws CpfException {
 		Boolean var = true;
 		String verifyCpf = cpf.replaceAll(" ", "");
-		verifyCpf = verifyCpf.trim();
+		verifyCpf = verifyCpf.trim().replaceAll(" ", "");
 
 		if (cpf.length() == 11) {
 			for (int i = 0; i < verifyCpf.length(); i++) {
@@ -33,7 +33,7 @@ public class ValidacaoIO {
 		return var;
 	}
 
-	public static Boolean verificacaoStringVazia(String str) {
+	public static Boolean verificacaoStringVazia(String str) throws AtributosNaoNulosNaoVaziosException {
 		boolean var = true;
 		str = str.replaceAll(" ", "");
 		if (str.isEmpty()) {
@@ -77,10 +77,10 @@ public class ValidacaoIO {
 		return var;
 	}
 
-	public static Boolean validacaoTelefoneException(String num) {
+	public static Boolean validacaoTelefoneException(String num) throws TelefoneException {
 		Boolean var = true;
 		String verifyTel = num.replaceAll(" ", "");
-		verifyTel = verifyTel.trim();
+		verifyTel = verifyTel.trim().replaceAll(" ", "");
 
 		if (verifyTel.length() == 2 || verifyTel.length() == 9) {
 			for (int i = 0; i < verifyTel.length(); i++) {
@@ -97,12 +97,13 @@ public class ValidacaoIO {
 		}
 
 		return var;
+
 	}
 
-	public static Boolean validaApenasDeLetras(String palavra) {
+	public static Boolean ApenasDeLetras(String palavra) throws ApenasLetrasException {
 		Boolean var = false;
 		String verifyString = palavra.replaceAll(" ", "");
-		palavra = palavra.trim();
+		palavra = palavra.trim().replaceAll(" ", "");
 
 		for (int i = 0; i < palavra.length(); i++) {
 			char c = verifyString.charAt(i);
@@ -115,9 +116,9 @@ public class ValidacaoIO {
 		}
 		return var;
 	}
-	
+
 	public static String removeAcentos(String str) {
-	    return Normalizer.normalize(str, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+		return Normalizer.normalize(str, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
 	}
 
 }

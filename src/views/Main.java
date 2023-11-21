@@ -12,19 +12,21 @@ public class Main {
 
 			try {
 				Scanner ler = new Scanner(System.in);
-				System.out.println("		MENU		");
-				System.out.println("1. Opções Cliente");
-				System.out.println("2. Opções Funcionário");
-				System.out.println("3. Opcao Estoque");
-				System.out.println("4. Opções Produto");
-				System.out.println("0. Sair");
+				System.out.printf("\n---------------------------\n");
+				System.out.println("\n	  MENU		");
+				System.out.printf("\n---------------------------\n");
+				System.out.printf("\n1. Opções de Cliente.");
+				System.out.printf("\n2. Opções de Funcionário.");
+				System.out.printf("\n3. Opcao de Estoque.");
+				System.out.printf("\n4. Opções de Produto.");
+				System.out.printf("\n0. Sair. -> ");
 
 				opcaoMenu = ler.nextInt();
-				System.out.printf("\n-------------------------------------------------------\n");
+				System.out.printf("\n---------------------------\n");
 			} catch (InputMismatchException e) {
-				System.out.printf("\n-------------------------------------------------------\n");
+				System.out.printf("\n---------------------------\n");
 				System.out.printf("Caracter Inserido Incorretamente.\nTente Novamente.");
-				System.out.printf("\n-------------------------------------------------------\n");
+				System.out.printf("\n---------------------------\n");
 				continue;
 			}
 			
@@ -43,7 +45,7 @@ public class Main {
 				
 			} else if(opcaoMenu < 1 || opcaoMenu > 5) {
 				System.out.println("Insira um opção de Menu Corretamente.");
-				System.out.printf("-------------------------------------------------------\n");
+				System.out.printf("\n---------------------------\n");
 			} else {
 				
 			}

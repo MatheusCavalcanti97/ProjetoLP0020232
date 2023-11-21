@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class Cliente extends Pessoa{
+public class Cliente extends Pessoa {
 
 	private Date dataDeCadastro;
 	private static Cliente c;
@@ -20,13 +20,49 @@ public class Cliente extends Pessoa{
 		this.dataDeCadastro = dataDeCadastro;
 	}
 
-	public static Cliente getInstance() {
-		if (c == null) {
-			c = new Cliente();
-		}
+	@Override
+	public String toString() {
+		DateFormat dF = new SimpleDateFormat("dd/MM/yyyy");
+		String dataNasc1 = dF.format(this.dataNascimento);
+		String dataCadastro2 = dF.format(this.dataDeCadastro);
 
-		return c;
+		String returnInfo = "CPF: " + this.cpfPessoa
+				+ "\nNome: " + this.nome + "\nData de Nascimento: " + dataNasc1 + "\nE-mail: " + this.email
+				+ "\n\n------ INFO ENDEREÇO ------" + "\nRua: " + this.getEndereco().getNomeRua()
+				+ "\nNúmero Imovél: " + this.getEndereco().getNumeroImovel() + "\nCidade: "
+				+ this.getEndereco().getCidade() + "\nEstado: " + this.getEndereco().getEstado()
+				+ "\nData de Cadastro: " + dataCadastro2 + "\n";
+
+		return returnInfo;
+
 	}
+
+	public Date getDataDeCadastro() {
+		return dataDeCadastro;
+	}
+
+	public void setDataDeCadastro(Date dataDeCadastro) {
+		this.dataDeCadastro = dataDeCadastro;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(dataDeCadastro);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		return Objects.equals(dataDeCadastro, other.dataDeCadastro);
+	}
+
+}
 
 //	public void inserir(Cliente c) throws TelefoneException, EnderecoException, AtributosNaoNulosNaoVaziosException,
 //			ClienteJaCadastradoException, ListaVaziaException {
@@ -130,48 +166,3 @@ public class Cliente extends Pessoa{
 //
 //		return b;
 //	}
-
-	@Override
-	public String toString() {
-		DateFormat dF = new SimpleDateFormat("dd/MM/yyyy");
-		String dataNasc1 = dF.format(this.dataNascimento);
-		String dataCadastro2 = dF.format(this.dataDeCadastro);
-
-		String returnInfo = "\n\n-------------------------------------------------------\nCPF: " + this.cpfPessoa
-				+ "\nNome: " + this.nome + "\nData de Nascimento: " + dataNasc1 + "\nE-mail: " + this.email
-				+ "\n\n---------- INFO ENDEREÇO ----------" + "\nRua: " + this.getEndereco().getNomeRua()
-				+ "\nNúmero Imovél: " + this.getEndereco().getNumeroImovel() + "\nCidade: "
-				+ this.getEndereco().getCidade() + "\nEstado: " + this.getEndereco().getEstado()
-				+ "\nData de Cadastro: " + dataCadastro2 + "\n";
-
-		return returnInfo;
-
-	}
-
-
-	public Date getDataDeCadastro() {
-		return dataDeCadastro;
-	}
-
-	public void setDataDeCadastro(Date dataDeCadastro) {
-		this.dataDeCadastro = dataDeCadastro;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(dataDeCadastro);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Cliente other = (Cliente) obj;
-		return Objects.equals(dataDeCadastro, other.dataDeCadastro);
-	}
-
-}
