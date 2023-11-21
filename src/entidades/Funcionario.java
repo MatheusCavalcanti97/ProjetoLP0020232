@@ -3,15 +3,7 @@ package entidades;
 import java.util.Date;
 import java.util.List;
 
-import exceptionsClass.AtributosNaoNulosNaoVaziosException;
-import exceptionsClass.CpfException;
-import exceptionsClass.EnderecoException;
-import exceptionsClass.TelefoneException;
-import modelo.CrudClass;
-import modelo.IFuncionario;
-import util.ValidacaoIO;
-
-public class Funcionario extends Pessoa implements IFuncionario {
+public class Funcionario extends Pessoa {
 
 	private String matriculaFunc;
 	private String cargo;
@@ -70,15 +62,8 @@ public class Funcionario extends Pessoa implements IFuncionario {
 		this.comissao = comissao;
 	}
 
-	
 	public String toString() {
 		return "Nome: " + this.nome + " Matrícula: " + this.matriculaFunc;
-	}
-
-	@Override
-	public double calcularSalarioLiquido(Double comissao) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }

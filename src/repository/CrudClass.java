@@ -1,4 +1,4 @@
-package modelo;
+package repository;
 
 import java.util.List;
 
@@ -19,5 +19,6 @@ public interface CrudClass<T> {
 	public void deletar();
 
 	public List<T> listarTodos();
+
 
 }

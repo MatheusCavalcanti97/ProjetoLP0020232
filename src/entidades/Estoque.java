@@ -1,20 +1,7 @@
 package entidades;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
-
-import exceptionsClass.AtributosNaoNulosNaoVaziosException;
-import exceptionsClass.ClienteJaCadastradoException;
-import exceptionsClass.CpfException;
-import exceptionsClass.EnderecoException;
-import exceptionsClass.EstoqueUnicoException;
-import exceptionsClass.ListaVaziaException;
-import exceptionsClass.TelefoneException;
-import modelo.CrudClass;
-import modelo.IEstoque;
-import util.ValidacaoIO;
 
 public class Estoque {
 

@@ -2,19 +2,9 @@ package entidades;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-
-import exceptionsClass.AtributosNaoNulosNaoVaziosException;
-import exceptionsClass.ClienteJaCadastradoException;
-import exceptionsClass.EnderecoException;
-import exceptionsClass.ListaVaziaException;
-import exceptionsClass.TelefoneException;
-import modelo.CrudClass;
-import modelo.ICliente;
-import util.ValidacaoIO;
 
 public class Cliente extends Pessoa{
 

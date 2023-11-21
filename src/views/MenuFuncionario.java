@@ -36,7 +36,15 @@ public class MenuFuncionario {
 			if (opcao == 1) {
 				FuncionarioRepository.getInstance().inserir();;
 			}
-			
+			else if (opcao == 2) {
+				FuncionarioRepository.getInstance().deletar();
+			}
+			else if (opcao == 3) {
+				FuncionarioRepository.getInstance().listarTodos();
+			}
+			else if (opcao == 4) {
+				FuncionarioRepository.getInstance().buscarMatricula();
+			}
 			
 			
 		}

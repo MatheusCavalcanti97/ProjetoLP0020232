@@ -9,7 +9,6 @@ import exceptionsClass.CpfException;
 import exceptionsClass.EnderecoException;
 import exceptionsClass.ListaVaziaException;
 import exceptionsClass.TelefoneException;
-import modelo.CrudClass;
 
 public class FuncionarioRepository implements CrudClass<Funcionario>{
 	
@@ -51,6 +50,9 @@ public class FuncionarioRepository implements CrudClass<Funcionario>{
 
 	public List<Funcionario> getListFuncionario() {
 		return listFuncionario;
+	}
+	public void buscarMatricula() {
+		
 	}
 
 }

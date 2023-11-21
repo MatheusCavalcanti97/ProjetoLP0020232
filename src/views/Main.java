@@ -17,7 +17,7 @@ public class Main {
 				System.out.println("2. Opções Funcionário");
 				System.out.println("3. Opcao Estoque");
 				System.out.println("4. Opções Produto");
-				System.out.println("5. Sair");
+				System.out.println("0. Sair");
 
 				opcaoMenu = ler.nextInt();
 				System.out.printf("\n-------------------------------------------------------\n");
