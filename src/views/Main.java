@@ -19,35 +19,38 @@ public class Main {
 				System.out.printf("\n2. Opções de Funcionário.");
 				System.out.printf("\n3. Opcao de Estoque.");
 				System.out.printf("\n4. Opções de Produto.");
+				System.out.printf("\n4. Opções de Venda.");
 				System.out.printf("\n0. Sair. -> ");
 
 				opcaoMenu = ler.nextInt();
 				System.out.printf("\n---------------------------\n");
 			} catch (InputMismatchException e) {
-				System.out.printf("\n---------------------------\n");
-				System.out.printf("Caracter Inserido Incorretamente.\nTente Novamente.");
-				System.out.printf("\n---------------------------\n");
+				System.out.print("\n---------------------------\n");
+				System.out.print("CARACTER INSERIDO INCORRETAMENTE.");
+				System.out.print("\nTENTE NOVAMENTE.");
+				System.out.print("\n---------------------------\n");
 				continue;
 			}
-			
-			if(opcaoMenu == 0) {
+
+			if (opcaoMenu == 0) {
 				System.out.println("PROGRAMA ENCERRADO.");
 				flagMenu = false;
 			} else if (opcaoMenu == 1) {
 				MenuCliente.menuCliente();
 			} else if (opcaoMenu == 2) {
-				MenuFuncionario.getInstance().opcoesFuncionario();
-			} else if(opcaoMenu == 3) {
-					MenuEstoque.menuEstoque();
-			} else if(opcaoMenu == 4){
-				
-			} else if(opcaoMenu == 5) {
-				
-			} else if(opcaoMenu < 1 || opcaoMenu > 5) {
-				System.out.println("Insira um opção de Menu Corretamente.");
-				System.out.printf("\n---------------------------\n");
+				MenuFuncionario.menuFuncionario();
+			} else if (opcaoMenu == 3) {
+				MenuEstoque.menuEstoque();
+			} else if (opcaoMenu == 4) {
+				MenuProduto.menuProduto();
+			} else if (opcaoMenu == 5) {
+				menuVenda.menuProduto();
+			} else if (opcaoMenu < 1 || opcaoMenu > 5) {
+				System.out.printf("\n-------------------------------------------------------\n");
+				System.out.printf("\nINSIRA UMA OPCAO CORRETA!\n");
+				System.out.printf("\n-------------------------------------------------------\n");
 			} else {
-				
+
 			}
 		}
 	}

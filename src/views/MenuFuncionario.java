@@ -1,53 +1,53 @@
 package views;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import repository.FuncionarioRepository;
 
 public class MenuFuncionario {
 
-	Scanner sc = new Scanner(System.in);
+	public static void menuFuncionario() {
 
-	private static MenuFuncionario instance;
+		Integer opcaoMenu2 = null;
+		boolean varFlagMenu = true;
 
-	public static synchronized MenuFuncionario getInstance() {
+		while (varFlagMenu) {
 
-		if (instance == null) {
-			instance = new MenuFuncionario();
+			try {
+				Scanner ler = new Scanner(System.in);
+				System.out.print("\n---------------------------\n");
+				System.out.print("	  FUNCIONARIO		");
+				System.out.print("\n---------------------------\n");
+				System.out.print("\n1. Inserir." + "\n2. Atualizar." + "\n3. Deletar." + "\n4. Listar Todos os Funcionários."
+						+ "\n0. Sair." + "-> ");
+
+				opcaoMenu2 = ler.nextInt();
+				System.out.print("\n---------------------------\n");
+			} catch (InputMismatchException e) {
+				System.out.print("\n---------------------------\n");
+				System.out.print("CARACTER INSERIDO INCORRETAMENTE.");
+				System.out.print("\nTENTE NOVAMENTE.");
+				System.out.print("\n---------------------------\n");
+				continue;
+			}
+
+			if (opcaoMenu2 == 0) {
+				System.out.print("\n---------------------------\n");
+				System.out.print("RETORNANDO PRO MENU ANTERIOR.");
+				System.out.print("\n---------------------------\n");
+				varFlagMenu = false;
+			} else if (opcaoMenu2 == 1) {
+
+			} else if (opcaoMenu2 == 2) {
+
+			} else if (opcaoMenu2 == 3) {
+
+			} else if (opcaoMenu2 == 4) {
+
+			} else {
+				System.out.printf("\n-------------------------------------------------------\n");
+				System.out.printf("\nINSIRA UMA OPCAO CORRETA!\n");
+				System.out.printf("\n-------------------------------------------------------\n");
+			}
 		}
-		return instance;
-
-	}
-
-	public void opcoesFuncionario() {
-
-		int opcao = 0;
-		while (opcao != 5) {
-
-			System.out.println("		Opções Funcionário		");
-			System.out.println("1. Cadastrar ");
-			System.out.println("2. Remover ");
-			System.out.println("3. Listar ");
-			System.out.println("4. Buscar por Matrícula");
-			System.out.println("5. Voltar");
-
-			opcao = sc.nextInt();
-			
-			if (opcao == 1) {
-				FuncionarioRepository.getInstance().inserir();;
-			}
-			else if (opcao == 2) {
-				FuncionarioRepository.getInstance().deletar();
-			}
-			else if (opcao == 3) {
-				FuncionarioRepository.getInstance().listarTodos();
-			}
-			else if (opcao == 4) {
-				FuncionarioRepository.getInstance().buscarMatricula();
-			}
-			
-			
-		}
-
 	}
 }

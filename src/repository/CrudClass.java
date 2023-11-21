@@ -14,9 +14,9 @@ public interface CrudClass<T> {
 
 	public void inserir() throws ClienteJaCadastradoException, CpfException, AtributosNaoNulosNaoVaziosException, ApenasLetrasException, ParseException, TelefoneException;
 
-	public void atualizar();
+	public void atualizar() throws ListaVaziaException, ClienteJaCadastradoException, AtributosNaoNulosNaoVaziosException;
 
-	public void deletar();
+	public void deletar() throws ListaVaziaException, ClienteJaCadastradoException;
 
 	public List<T> listarTodos() throws ListaVaziaException;
 

@@ -3,9 +3,9 @@ package views;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class MenuEstoque {
-
-	public static void menuEstoque() {
+public class menuVenda {
+	
+	public static void menuProduto() {
 
 		Integer opcaoMenu = null;
 		boolean varFlagMenu = true;
@@ -15,9 +15,9 @@ public class MenuEstoque {
 			try {
 				Scanner ler = new Scanner(System.in);
 				System.out.print("\n---------------------------\n");
-				System.out.print("	  ESTOQUE		");
+				System.out.print("	  VENDAS		");
 				System.out.print("\n---------------------------\n");
-				System.out.print("\n1. Inserir." + "\n2. Atualizar." + "\n3. Deletar." + "\n4. Listar Todos os Estoques."
+				System.out.print("\n1. Inserir." + "\n2. Atualizar." + "\n3. Deletar." + "\n4. Listar Todos as Vendas."
 						+ "\n0. Sair." + "-> ");
 
 				opcaoMenu = ler.nextInt();
