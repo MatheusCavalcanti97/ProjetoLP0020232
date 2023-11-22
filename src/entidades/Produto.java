@@ -1,9 +1,12 @@
 package entidades;
 
+import java.util.Date;
+import java.util.Objects;
+
 public class Produto {
 
 	private String descricaoProduto;
-	private String dataFabricacao;
+	private Date dataFabricacao;
 	private double valorDeCompra;
 	private double valorDeVenda;
 	private Estoque estoque;
@@ -11,7 +14,7 @@ public class Produto {
 	public Produto() {
 	};
 
-	public Produto(String descricaoProduto, String dataFabricacao, double valorDeCompra, double valorDeVenda,
+	public Produto(String descricaoProduto, Date dataFabricacao, double valorDeCompra, double valorDeVenda,
 			Estoque estoque) {
 		super();
 		this.descricaoProduto = descricaoProduto;
@@ -29,11 +32,11 @@ public class Produto {
 		this.descricaoProduto = descricaoProduto;
 	}
 
-	public String getDataFabricacao() {
+	public Date getDataFabricacao() {
 		return dataFabricacao;
 	}
 
-	public void setDataFabricacao(String dataFabricacao) {
+	public void setDataFabricacao(Date dataFabricacao) {
 		this.dataFabricacao = dataFabricacao;
 	}
 
@@ -59,6 +62,26 @@ public class Produto {
 
 	public void setEstoque(Estoque estoque) {
 		this.estoque = estoque;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(dataFabricacao, descricaoProduto, estoque, valorDeCompra, valorDeVenda);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produto other = (Produto) obj;
+		return Objects.equals(dataFabricacao, other.dataFabricacao)
+				&& Objects.equals(descricaoProduto, other.descricaoProduto) && Objects.equals(estoque, other.estoque)
+				&& Double.doubleToLongBits(valorDeCompra) == Double.doubleToLongBits(other.valorDeCompra)
+				&& Double.doubleToLongBits(valorDeVenda) == Double.doubleToLongBits(other.valorDeVenda);
 	}
 
 }

@@ -3,6 +3,9 @@ package views;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import exceptionsClass.AtributosNaoNulosNaoVaziosException;
+import repository.ProdutoRepository;
+
 public class MenuProduto {
 	
 	public static void menuProduto() {
@@ -36,7 +39,12 @@ public class MenuProduto {
 				System.out.print("\n---------------------------\n");
 				varFlagMenu = false;
 			} else if (opcaoMenu == 1) {
-
+				try {
+					ProdutoRepository.getInstance().inserir();
+				} catch(AtributosNaoNulosNaoVaziosException e1) {
+					System.out.print("\n---------------------------\n");
+					System.out.print(e1.getMessage());
+				}
 			} else if (opcaoMenu == 2) {
 
 			} else if (opcaoMenu == 3) {

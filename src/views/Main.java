@@ -46,9 +46,9 @@ public class Main {
 			} else if (opcaoMenu == 5) {
 				menuVenda.menuProduto();
 			} else if (opcaoMenu < 1 || opcaoMenu > 5) {
-				System.out.printf("\n-------------------------------------------------------\n");
-				System.out.printf("\nINSIRA UMA OPCAO CORRETA!\n");
-				System.out.printf("\n-------------------------------------------------------\n");
+				System.out.print("\n---------------------------\n\n");
+				System.out.printf("\nINSIRA UMA OPÇÃO CORRETA!\n");
+				System.out.print("\n---------------------------\n\n");
 			} else {
 
 			}
