@@ -1,5 +1,7 @@
 package entidades;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
@@ -8,17 +10,29 @@ public class Estoque {
 	private String descricaoEstoque;
 	private int quantidadeProduto;
 	private Date dataEntradaProd;
-	private Date dataSaída;
-	
+	private Date dataSaida;
+
 	public Estoque() {
 	};
 
-	public Estoque(String descricaoEstoque, int quantidadeProduto, Date dataEntradaProd, Date dataSaída) {
+	public Estoque(String descricaoEstoque, int quantidadeProduto, Date dataEntradaProd, Date dataSaida) {
 		super();
 		this.descricaoEstoque = descricaoEstoque;
 		this.quantidadeProduto = quantidadeProduto;
 		this.dataEntradaProd = dataEntradaProd;
-		this.dataSaída = dataSaída;
+		this.dataSaida = dataSaida;
+	}
+
+	@Override
+	public String toString() {
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		String dataE = "", dataS = "";
+
+		dataE = dateFormat.format(this.dataEntradaProd);
+		dataS = dateFormat.format(this.dataSaida);
+
+		return "NOME/DESCRIÇÃO: " + this.descricaoEstoque.toUpperCase() + "\nQUANTIDADE: " + this.quantidadeProduto
+				+ "\nDATA ENTRADA: " + dataE + "\nDATA SAÍDA: " + dataS;
 	}
 
 	public String getDescricaoEstoque() {
@@ -45,17 +59,17 @@ public class Estoque {
 		this.dataEntradaProd = dataEntradaProd;
 	}
 
-	public Date getDataSaída() {
-		return dataSaída;
+	public Date getDataSaida() {
+		return dataSaida;
 	}
 
-	public void setDataSaída(Date dataSaída) {
-		this.dataSaída = dataSaída;
+	public void setDataSaida(Date dataSaida) {
+		this.dataSaida = dataSaida;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dataEntradaProd, dataSaída, descricaoEstoque, quantidadeProduto);
+		return Objects.hash(dataEntradaProd, dataSaida, descricaoEstoque, quantidadeProduto);
 	}
 
 	@Override
@@ -67,7 +81,7 @@ public class Estoque {
 		if (getClass() != obj.getClass())
 			return false;
 		Estoque other = (Estoque) obj;
-		return Objects.equals(dataEntradaProd, other.dataEntradaProd) && Objects.equals(dataSaída, other.dataSaída)
+		return Objects.equals(dataEntradaProd, other.dataEntradaProd) && Objects.equals(dataSaida, other.dataSaida)
 				&& Objects.equals(descricaoEstoque, other.descricaoEstoque)
 				&& quantidadeProduto == other.quantidadeProduto;
 	}

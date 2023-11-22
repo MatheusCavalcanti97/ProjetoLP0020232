@@ -44,9 +44,9 @@ public class MenuFuncionario {
 			} else if (opcaoMenu2 == 4) {
 
 			} else {
-				System.out.printf("\n-------------------------------------------------------\n");
-				System.out.printf("\nINSIRA UMA OPCAO CORRETA!\n");
-				System.out.printf("\n-------------------------------------------------------\n");
+				System.out.print("\n---------------------------\n\n");
+				System.out.printf("\nINSIRA UMA OPÇÃO CORRETA!\n");
+				System.out.print("\n---------------------------\n\n");
 			}
 		}
 	}

@@ -205,7 +205,6 @@ public class ClienteRepository implements CrudClass<Cliente> {
 		boolean varFlagMenu2 = false;
 		Integer indice = null;
 
-		System.out.println(c.size());
 		if (c.size() < 1) {
 			throw new ListaVaziaException("NÃO HÁ CLIENTES CADASTRADOS\nNA BASE DE DADOS DO SISTEMA.\n");
 		}
