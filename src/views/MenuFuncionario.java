@@ -3,6 +3,8 @@ package views;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import repository.FuncionarioRepository;
+
 public class MenuFuncionario {
 
 	public static void menuFuncionario() {
@@ -37,12 +39,21 @@ public class MenuFuncionario {
 				varFlagMenu = false;
 			} else if (opcaoMenu2 == 1) {
 
+				FuncionarioRepository.getInstance().inserir();
+				
 			} else if (opcaoMenu2 == 2) {
 
+				FuncionarioRepository.getInstance().atualizar();
+				
 			} else if (opcaoMenu2 == 3) {
+
+				FuncionarioRepository.getInstance().deletar();
 
 			} else if (opcaoMenu2 == 4) {
 
+				FuncionarioRepository.getInstance().listarTodos();
+
+				
 			} else {
 				System.out.print("\n---------------------------\n\n");
 				System.out.printf("\nINSIRA UMA OPÇÃO CORRETA!\n");
