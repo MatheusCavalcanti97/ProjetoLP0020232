@@ -5,7 +5,6 @@ import java.util.List;
 
 import exceptionsClass.ApenasLetrasException;
 import exceptionsClass.AtributosNaoNulosNaoVaziosException;
-import exceptionsClass.CategoriaProdutoException;
 import exceptionsClass.ClienteJaCadastradoException;
 import exceptionsClass.CpfException;
 import exceptionsClass.EstoqueUnicoException;
@@ -14,7 +13,7 @@ import exceptionsClass.TelefoneException;
 
 public interface CrudClass<T> {
 
-	public void inserir() throws ClienteJaCadastradoException, CpfException, AtributosNaoNulosNaoVaziosException, ApenasLetrasException, ParseException, TelefoneException, EstoqueUnicoException, CategoriaProdutoException;
+	public void inserir() throws ClienteJaCadastradoException, CpfException, AtributosNaoNulosNaoVaziosException, ApenasLetrasException, ParseException, TelefoneException, EstoqueUnicoException;
 
 	public void atualizar() throws ListaVaziaException, ClienteJaCadastradoException, AtributosNaoNulosNaoVaziosException, EstoqueUnicoException;
 

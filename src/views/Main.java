@@ -19,8 +19,7 @@ public class Main {
 				System.out.printf("\n2. Opções de Funcionário.");
 				System.out.printf("\n3. Opcao de Estoque.");
 				System.out.printf("\n4. Opções de Produto.");
-				System.out.printf("\n5. Opções de Venda.");
-				System.out.printf("\n6. Opções de Categoria de Produto.");
+				System.out.printf("\n4. Opções de Venda.");
 				System.out.printf("\n0. Sair. -> ");
 
 				opcaoMenu = ler.nextInt();
@@ -46,8 +45,6 @@ public class Main {
 				MenuProduto.menuProduto();
 			} else if (opcaoMenu == 5) {
 				menuVenda.menuProduto();
-			} else if(opcaoMenu == 6) {
-				MenuCategoriaProduto.menuCategoriaProduto();
 			} else if (opcaoMenu < 1 || opcaoMenu > 5) {
 				System.out.print("\n---------------------------\n\n");
 				System.out.printf("\nINSIRA UMA OPÇÃO CORRETA!\n");
