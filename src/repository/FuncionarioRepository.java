@@ -10,57 +10,39 @@ import exceptionsClass.EnderecoException;
 import exceptionsClass.ListaVaziaException;
 import exceptionsClass.TelefoneException;
 
-public class FuncionarioRepository implements CrudClass<Funcionario> {
-
-	private static FuncionarioRepository instance;
-
+public class FuncionarioRepository implements CrudClass<Funcionario>{
+	
+	private static FuncionarioRepository instance; 
+	
 	private List<Funcionario> listFuncionario;
-
+	
 	public static synchronized FuncionarioRepository getInstance() {
-
-		if (instance == null) {
+		
+		if(instance == null) {
 			instance = new FuncionarioRepository();
 		}
 		return instance;
 	}
 
 	@Override
-	public void inserir() {
-
-		String nome;
-		String cpf;
-		String email;
-		String telefone;
-		String rua;
-		String numero;
-		String cidade;
-
+	public void inserir()  {
 		
-
-		boolean validacao = false;
-
-		while (validacao != true) {
-			
-			System.out.println("");
-
-		}
-
 	}
 
 	@Override
 	public void atualizar() {
 //		listFuncionario.add(obj);
-
+		
 	}
 
 	@Override
 	public void deletar() {
-
+		
 	}
 
 	@Override
-	public List<Funcionario> listarTodos() {
-		for (Funcionario funcionario : listFuncionario) {
+	public List<Funcionario> listarTodos(){
+		for(Funcionario funcionario : listFuncionario) {
 			System.out.println(funcionario.toString());
 		}
 		return null;
@@ -69,9 +51,8 @@ public class FuncionarioRepository implements CrudClass<Funcionario> {
 	public List<Funcionario> getListFuncionario() {
 		return listFuncionario;
 	}
-
 	public void buscarMatricula() {
-
+		
 	}
 
 }
