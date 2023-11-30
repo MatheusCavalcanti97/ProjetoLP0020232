@@ -6,6 +6,7 @@ import java.util.Objects;
 public class Produto {
 
 	private String descricaoProduto;
+	private CategoriaProduto categoria;
 	private Date dataFabricacao;
 	private double valorDeCompra;
 	private double valorDeVenda;
@@ -14,10 +15,11 @@ public class Produto {
 	public Produto() {
 	};
 
-	public Produto(String descricaoProduto, Date dataFabricacao, double valorDeCompra, double valorDeVenda,
-			Estoque estoque) {
+	public Produto(String descricaoProduto, CategoriaProduto categoria, Date dataFabricacao, double valorDeCompra,
+			double valorDeVenda, Estoque estoque) {
 		super();
 		this.descricaoProduto = descricaoProduto;
+		this.categoria = categoria;
 		this.dataFabricacao = dataFabricacao;
 		this.valorDeCompra = valorDeCompra;
 		this.valorDeVenda = valorDeVenda;
@@ -34,6 +36,14 @@ public class Produto {
 
 	public Date getDataFabricacao() {
 		return dataFabricacao;
+	}
+
+	public CategoriaProduto getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaProduto categoria) {
+		this.categoria = categoria;
 	}
 
 	public void setDataFabricacao(Date dataFabricacao) {
