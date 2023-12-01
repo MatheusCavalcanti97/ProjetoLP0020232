@@ -1,11 +1,17 @@
 package views;
 
+import java.text.ParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import exceptionsClass.ApenasLetrasException;
+import exceptionsClass.AtributosNaoNulosNaoVaziosException;
+import exceptionsClass.ClienteJaCadastradoException;
+import exceptionsClass.CpfException;
+
 public class Main {
 
-	public void run() {
+	public void run() throws CpfException, AtributosNaoNulosNaoVaziosException, ClienteJaCadastradoException, ApenasLetrasException, ParseException {
 		Boolean flagMenu = true;
 		Integer opcaoMenu = null;
 		while (flagMenu) {
