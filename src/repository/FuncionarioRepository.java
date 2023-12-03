@@ -179,7 +179,7 @@ public class FuncionarioRepository implements CrudClass<Funcionario> {
 					&& ValidacaoIO.verificacaoStringVazia(cargo) == false) {
 				ValidacaoCargo = true;
 			} else {
-				System.out.println("Matrícula inválida!");
+				System.out.println("Cargo inválida!");
 			}
 		}
 		System.out.println("\n---------------------------\n");
@@ -230,8 +230,195 @@ public class FuncionarioRepository implements CrudClass<Funcionario> {
 	}
 
 	@Override
-	public void atualizar() {
+	public void atualizar() throws AtributosNaoNulosNaoVaziosException {
 //		listFuncionario.add(obj);
+		System.out.println("\n---------------------------\n");
+		System.out.println("	Atualizar		\n");
+		if (listFuncionario.size() > 0) {
+			while (true) {
+				System.out.println("Digite a matrícula do funcionário que deseja atualizar");
+				System.out.println(": ");
+				String mat = sc.nextLine();
+				for (int i = 0; i < listFuncionario.size(); i++) {
+
+					System.out.println(listFuncionario.get(i).getMatriculaFunc());
+
+					if (listFuncionario.get(i).getMatriculaFunc().equalsIgnoreCase(mat)) {
+						System.out.println(listFuncionario.get(i).toString() + "\n");
+
+						boolean opcAtualizar = true;
+						while (opcAtualizar) {
+							System.out.println("\n---------------------------\n");
+							System.out.println("1- Atualizar cargo");
+							System.out.println("2- Atualizar Telefone");
+							System.out.println("3- Atualizar Endereço");
+							System.out.println("4- Atualizar salário");
+							System.out.println("5- Atualizar comição");
+							System.out.println("6- Atualizar nome");
+							System.out.println("0- sair");
+
+							String opcao = sc.nextLine();
+							if (opcao.equalsIgnoreCase("1")) {
+
+								String cargo = "";
+								boolean validacaoCargo = false;
+								while (validacaoCargo != true) {
+									System.out.println("\n---------------------------\n");
+
+									System.out.println("		Atualizar Cargo		");
+
+									System.out.println("Novo Cargo: ");
+									cargo = sc.nextLine();
+									if (ValidacaoIO.verificacaoStringNula(cargo) == false
+											&& ValidacaoIO.verificacaoStringVazia(cargo) == false) {
+										validacaoCargo = true;
+									} else {
+										System.out.println("Cargo inválido!");
+									}
+								}
+								listFuncionario.get(i).setCargo(cargo);
+								System.out.println("Cargo atualizado! /n");
+								System.out.println("\n---------------------------\n");
+
+								break;
+
+							}
+							if (opcao.equalsIgnoreCase("2")) {
+								System.out.println("\n---------------------------\n");
+
+								System.out.println("		Atualizar telefone		");
+								while (true) {
+									String pass = "";
+
+									Telefone telefone = newTelefone();
+									List<Telefone> telefones = new ArrayList<>();
+									listFuncionario.get(i).setTelefone(telefones);
+									System.out.println("\n	Telefone atualizado!	\n");
+
+									break;
+								}
+							}
+
+							if (opcao.equalsIgnoreCase("3")) {
+
+								System.out.println("\n---------------------------\n");
+								System.out.println(" 		Atualizar Endereço		");
+
+								Endereco endereco = newEndereco();
+								System.out.println("\n---------------------------\n");
+
+								listFuncionario.get(i).setEndereco(endereco);
+								System.out.println("\n	Endereço atualizado!	\n");
+
+							}
+							if (opcao.equalsIgnoreCase("4")) {
+
+								double salario;
+								boolean ValidacaoSalario = false;
+								while (ValidacaoSalario != true) {
+									try {
+										System.out.println("\n---------------------------\n");
+
+										System.out.println("		Salário		");
+										System.out.println("Salário: ");
+										salario = sc.nextDouble();
+										sc.nextLine();
+										if (salario >= 1320) {
+											listFuncionario.get(i).setSalario(salario);
+											System.out.println("\n	Salário atualizado!	\n");
+
+											ValidacaoSalario = true;
+										} else {
+											System.out.println("Salário inválido!");
+											System.out.println("Salário deve ser igual ou maior que R$1320,00\n");
+										}
+									} catch (java.util.InputMismatchException e2) {
+										sc.nextLine();
+										System.out.println("Salário inválido!");
+										System.out.println("\n---------------------------\n");
+									}
+								}
+								System.out.println("\n---------------------------\n");
+
+							}
+							if (opcao.equalsIgnoreCase("5")) {
+								System.out.println("\n---------------------------\n");
+								System.out.println("	Atualiozar Comissão		");
+
+								boolean ValidacaoComissao = false;
+								double comissao;
+								while (ValidacaoComissao != true) {
+									try {
+										System.out.println("Comissão: ");
+										comissao = sc.nextDouble();
+										sc.nextLine();
+										listFuncionario.get(i).setComissao(comissao);
+										System.out.println("\n	Comissão atualizada!	\n");
+
+										System.out.println("\n---------------------------\n");
+										ValidacaoComissao = true;
+									} catch (java.util.InputMismatchException e2) {
+										sc.nextLine();
+										System.out.println("Comissão inválida!");
+										System.out.println("\n---------------------------\n");
+									}
+								}
+
+							}
+							if (opcao.equalsIgnoreCase("6")) {
+								while (true) {
+									String nome;
+									System.out.println("\n---------------------------\n");
+									System.out.println("Nome atualizado: ");
+
+									nome = sc.nextLine();
+
+									if (ValidacaoIO.verificacaoStringNula(nome) == false
+											&& ValidacaoIO.verificacaoStringVazia(nome) == false) {
+										try {
+											if (ValidacaoIO.ApenasDeLetras(nome) == true) {
+												listFuncionario.get(i).setNome(nome);
+												System.out.println("Nome atualizado! ");
+												System.out.println("\n---------------------------\n");
+
+												break;
+											} else {
+											}
+										} catch (ApenasLetrasException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+											System.out.println("O nome deve conter apenas letras!");
+
+										}
+									} else {
+										System.out.println("Nome inválido!");
+
+									}
+
+								}
+								if (opcao.equalsIgnoreCase("0")) {
+									break;
+								}
+
+							} else {
+								System.out.println("opção incorreta! \n");
+							}
+
+						}
+
+					} else {
+						System.out.println("Funionario não encontrado \n");
+						break;
+					}
+					break;
+				}
+			}
+
+		} else {
+			System.out.println("nemhum funcionário cadastrado\n");
+			System.out.println("\n---------------------------\n");
+
+		}
 
 	}
 
