@@ -254,5 +254,10 @@ public class EstoqueRepository implements CrudClass<Estoque> {
 		}
 		return flagBoo;
 	}
+	
+
+	public List<Estoque> getListEstoque() {
+		return listEstoque;
+	}
 
 }
