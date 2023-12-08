@@ -91,8 +91,10 @@ public class ProdutoRepository implements CrudClass<Produto> {
 							throw new AtributosNaoNulosNaoVaziosException(
 									"\nO NOME/DESCRIÇÃO DO PRODUTO\nDEVE ESTAR DEVIDAMENTE PREENCHIDO.\n");
 						}
-
 					}
+					
+					System.out.println("DEU CERTO");
+
 					while (true) {
 						try {
 							System.out.print("\n---------------------------\n");
@@ -168,10 +170,10 @@ public class ProdutoRepository implements CrudClass<Produto> {
 											quant = sc.nextInt();
 											sc.nextLine();
 
-											
 											dataFabricacao = inserirDataCadastroProduto();
 											dataSaida = new Date(374021196980L);
-											estoque = new Estoque(EstoqueRepository.getInstance().getListEstoque().get(i).getDescricaoEstoque(), quant, dataFabricacao, dataSaida);
+											estoque = new Estoque(EstoqueRepository.getInstance().getListEstoque()
+													.get(i).getDescricaoEstoque(), quant, dataFabricacao, dataSaida);
 											break;
 										} catch (InputMismatchException e) {
 											sc.nextLine();
@@ -180,14 +182,15 @@ public class ProdutoRepository implements CrudClass<Produto> {
 
 									}
 
-									prod = new Produto(descricaoProduto.toUpperCase(), dataFabricacao, valorDeCompra, valorDeVenda,
-											estoque);
+									prod = new Produto(descricaoProduto.toUpperCase(), dataFabricacao, valorDeCompra,
+											valorDeVenda, estoque);
 									ProdutoRepository.getInstance().listProduto.add(prod);
 									System.out.print("\n---------------------------\n");
 									System.out.println("\nPRODUTO CADASTRADO!\n");
 									break;
 								} else {
-									throw new EstoqueNaoCadastradoException("\nINSIRA UM ESTOQUE COM A DESCRIÇÃO/NOME CORRETAMENTE\nPARA INSERIR UM PRODUTO!\n");
+									throw new EstoqueNaoCadastradoException(
+											"\nINSIRA UM ESTOQUE COM A DESCRIÇÃO/NOME CORRETAMENTE\nPARA INSERIR UM PRODUTO!\n");
 								}
 
 							}
@@ -345,7 +348,7 @@ public class ProdutoRepository implements CrudClass<Produto> {
 		}
 		return data;
 	}
-	
+
 	private static Date inserirDataCadastroProduto() throws ParseException {
 		Date dataInscricao = new Date();
 		DateFormat dF = new SimpleDateFormat("dd/MM/yyyy");
@@ -354,5 +357,18 @@ public class ProdutoRepository implements CrudClass<Produto> {
 		dataInscricao = dF.parse(resp);
 
 		return dataInscricao;
+	}
+
+	public int contarProdutosPorTipoDeEstoque(String tipoDeEstoque) {
+		List<Produto> pList = ProdutoRepository.getInstance().listProduto;
+
+		int quantidadeTotal = 0;
+
+		for (Produto produto : pList) {
+			if (produto.getDescricaoProduto().equals(tipoDeEstoque)) {
+				quantidadeTotal += produto.getEstoque().getQuantidadeProduto();
+			}
+		}
+		return quantidadeTotal;
 	}
 }

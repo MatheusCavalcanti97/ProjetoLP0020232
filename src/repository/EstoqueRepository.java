@@ -57,7 +57,8 @@ public class EstoqueRepository implements CrudClass<Estoque> {
 
 					quantidadeProduto = 0;
 					dataEntradaProd = inserirDataCadastroEstoque();
-					estoque = new Estoque(descricaoEstoque.toUpperCase(), quantidadeProduto, dataEntradaProd, dataSaida);
+					estoque = new Estoque(descricaoEstoque.toUpperCase(), quantidadeProduto, dataEntradaProd,
+							dataSaida);
 					EstoqueRepository.instance.listEstoque.add(estoque);
 
 					System.out.print("\n---------------------------\n");
@@ -223,8 +224,9 @@ public class EstoqueRepository implements CrudClass<Estoque> {
 
 	@Override
 	public List<Estoque> listarTodos() throws ListaVaziaException {
-		List<Estoque> eList = EstoqueRepository.getInstance().listEstoque;
 		
+		List<Estoque> eList = EstoqueRepository.getInstance().listEstoque;
+
 		if (eList.size() < 1) {
 			throw new ListaVaziaException("\nNÃO HÁ NENHUM ESTOQUE\nCADASTRADO SISTEMA!\n");
 		}
@@ -232,8 +234,10 @@ public class EstoqueRepository implements CrudClass<Estoque> {
 		System.out.print("\n---------------------------\n");
 		System.out.print("TODOS ESTOQUES INSERIDOS");
 		System.out.print("\n---------------------------\n");
+		Estoque e;
 
 		for (int i = 0; i < eList.size(); i++) {
+
 			System.out.print("\n----------- " + (i + 1) + "º " + "-----------\n");
 			System.out.print(eList.get(i).toString());
 			System.out.print("\n---------------------------\n");
@@ -257,7 +261,7 @@ public class EstoqueRepository implements CrudClass<Estoque> {
 		}
 		return flagBoo;
 	}
-	
+
 	private static Date inserirDataCadastroEstoque() throws ParseException {
 		Date dataInscricao = new Date();
 		DateFormat dF = new SimpleDateFormat("dd/MM/yyyy");
