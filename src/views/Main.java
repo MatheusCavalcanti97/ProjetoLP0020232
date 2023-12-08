@@ -25,7 +25,7 @@ public class Main {
 				System.out.printf("\n2. Opções de Funcionário.");
 				System.out.printf("\n3. Opcao de Estoque.");
 				System.out.printf("\n4. Opções de Produto.");
-				System.out.printf("\n4. Opções de Venda.");
+				System.out.printf("\n5. Opções de Venda.");
 				System.out.printf("\n0. Sair. -> ");
 
 				opcaoMenu = ler.nextInt();

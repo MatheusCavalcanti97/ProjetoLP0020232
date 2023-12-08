@@ -29,10 +29,10 @@ public class Estoque {
 		String dataE = "", dataS = "";
 
 		dataE = dateFormat.format(this.dataEntradaProd);
-		dataS = dateFormat.format(this.dataSaida);
 
-		return "NOME/DESCRIÇÃO: " + this.descricaoEstoque.toUpperCase() + "\nQUANTIDADE: " + this.quantidadeProduto
-				+ "\nDATA ENTRADA: " + dataE + "\nDATA SAÍDA: " + dataS;
+
+		return "\nNOME/DESCRIÇÃO: " + this.descricaoEstoque.toUpperCase() + "\n\nQUANTIDADE TOTAL DE ITENS\nCADASTRADO NESTA CATEGORIA: " + this.quantidadeProduto
+				+ "\n\nDATA CRIAÇÃO CATEGORIA PROD.: " + dataE + "\n\nDATA SAÍDA: " + dataS;
 	}
 
 	public String getDescricaoEstoque() {
@@ -85,78 +85,4 @@ public class Estoque {
 				&& Objects.equals(descricaoEstoque, other.descricaoEstoque)
 				&& quantidadeProduto == other.quantidadeProduto;
 	}
-
-//	@Override
-//	public void inserir(Estoque e)
-//			throws AtributosNaoNulosNaoVaziosException, NullPointerException, EstoqueUnicoException {
-//
-//		if (e != null) {
-//			if (this.estoqueUnico(e.getDescricaoEstoque()) == false) {
-//				this.listaEstoque.add(e);
-//			} else {
-//				throw new EstoqueUnicoException(
-//						"NÃO É PERMITIDA A INSERÇÃO DE ESTOQUE\nCOM O MESMO NOME MAIS DE 1 VEZ!");
-//			}
-//		} else {
-//			throw new NullPointerException("TODAS AS INFORMAÇÕES DO ESTOQUE DEVEM\nESTAR DEVIDAMENTE PREENCHIDAS!!");
-//		}
-//
-//	}
-//
-//	@Override
-//	public void atualizar(Estoque e) {
-//		List<Estoque> eList = this.listaEstoque;
-//		for (int i = 0; i < eList.size(); i++) {
-//			if (e.getDescricaoEstoque().toUpperCase()
-//					.equalsIgnoreCase(eList.get(i).getDescricaoEstoque().toUpperCase())) {
-//				eList.get(i).setDescricaoEstoque(e.getDescricaoEstoque());
-//			}
-//		}
-//	}
-//
-//	@Override
-//	public void deletar(Estoque e) throws ListaVaziaException {
-//		List<Estoque> eList = this.listaEstoque;
-//		for (int i = 0; i < eList.size(); i++) {
-//			if (e.getDescricaoEstoque().toUpperCase()
-//					.equalsIgnoreCase(eList.get(i).getDescricaoEstoque().toUpperCase())) {
-//				this.getListaEstoque().remove(i);
-//			}
-//		}
-//	}
-//
-//	@Override
-//	public List<Estoque> listarTodos() throws ListaVaziaException {
-//		List<Estoque> eList = this.listaEstoque;
-//
-//		if (eList.size() < 1) {
-//			throw new ListaVaziaException("NÃO HÁ NENHUM ESTOQUE CADASTRADO.");
-//		}
-//		return eList;
-//	}
-//
-//	@Override
-//	public String toString() {
-//		return "Descrição do estoque: " + this.descricaoEstoque + "\nQuantidade de Produto no Estoque: "
-//				+ this.quantidadeProduto + "\nData de Entrada do Produto: " + this.dataEntradaProd
-//				+ "\nData de Saída do Produto: " + this.dataSaída + "\n";
-//	}
-//
-//	@Override
-//	public boolean estoqueUnico(String a) {
-//		Boolean flagBoo = false;
-//		String a1 = null, b = null;
-//		a1 = ValidacaoIO.removeAcentos(a);
-//
-//		List<Estoque> eList = this.listaEstoque;
-//		for (int i = 0; i < eList.size(); i++) {
-//			b = ValidacaoIO.removeAcentos(eList.get(i).getDescricaoEstoque());
-//			if (a1.equalsIgnoreCase(b)) {
-//				flagBoo = true;
-//				break;
-//			}
-//		}
-//		return flagBoo;
-//	}
-
 }

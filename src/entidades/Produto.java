@@ -1,5 +1,7 @@
 package entidades;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
@@ -62,6 +64,16 @@ public class Produto {
 
 	public void setEstoque(Estoque estoque) {
 		this.estoque = estoque;
+	}
+
+	@Override
+	public String toString() {
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		String dataF = "";
+		dataF = dateFormat.format(this.getDataFabricacao());
+		return "\nNOME/DESCRICAO PRODUTO: " + this.descricaoProduto + "\nDATA DE FAB: " + dataF
+				+ "\nVALOR PAGO POR UN NA COMPRA DO DISTRIBUIDOR: R$" + this.valorDeCompra + "\nVALOR FINAL O CONSUMIDOR FINAL: R$"
+				+ this.valorDeVenda + "\n" + this.getEstoque().toString();
 	}
 
 	@Override

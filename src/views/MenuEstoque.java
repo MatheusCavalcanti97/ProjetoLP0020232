@@ -1,5 +1,6 @@
 package views;
 
+import java.text.ParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,7 +21,7 @@ public class MenuEstoque {
 			try {
 				Scanner ler = new Scanner(System.in);
 				System.out.print("\n---------------------------\n");
-				System.out.print("	  ESTOQUE		");
+				System.out.print("	ESTOQUE		");
 				System.out.print("\n---------------------------\n");
 				System.out.print("\n1. Inserir." + "\n2. Atualizar." + "\n3. Deletar."
 						+ "\n4. Listar Todos os Estoques." + "\n0. Sair." + "-> ");
@@ -49,6 +50,9 @@ public class MenuEstoque {
 				} catch (EstoqueUnicoException e2) {
 					System.out.print("\n---------------------------\n");
 					System.out.print(e2.getMessage());
+				} catch(ParseException e3) {
+					System.out.print("\n---------------------------\n");
+					System.out.print(e3.getMessage());
 				}
 			} else if (opcaoMenu == 2) {
 				try {
