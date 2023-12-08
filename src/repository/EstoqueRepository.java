@@ -224,7 +224,7 @@ public class EstoqueRepository implements CrudClass<Estoque> {
 
 	@Override
 	public List<Estoque> listarTodos() throws ListaVaziaException {
-		
+
 		List<Estoque> eList = EstoqueRepository.getInstance().listEstoque;
 
 		if (eList.size() < 1) {
@@ -271,7 +271,7 @@ public class EstoqueRepository implements CrudClass<Estoque> {
 
 		return dataInscricao;
 	}
-
+	
 	public List<Estoque> getListEstoque() {
 		return listEstoque;
 	}

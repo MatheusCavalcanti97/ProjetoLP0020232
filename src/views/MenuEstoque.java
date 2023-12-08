@@ -50,7 +50,7 @@ public class MenuEstoque {
 				} catch (EstoqueUnicoException e2) {
 					System.out.print("\n---------------------------\n");
 					System.out.print(e2.getMessage());
-				} catch(ParseException e3) {
+				} catch (ParseException e3) {
 					System.out.print("\n---------------------------\n");
 					System.out.print(e3.getMessage());
 				}

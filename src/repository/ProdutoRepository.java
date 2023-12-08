@@ -92,8 +92,6 @@ public class ProdutoRepository implements CrudClass<Produto> {
 									"\nO NOME/DESCRIÇÃO DO PRODUTO\nDEVE ESTAR DEVIDAMENTE PREENCHIDO.\n");
 						}
 					}
-					
-					System.out.println("DEU CERTO");
 
 					while (true) {
 						try {
@@ -192,9 +190,7 @@ public class ProdutoRepository implements CrudClass<Produto> {
 									throw new EstoqueNaoCadastradoException(
 											"\nINSIRA UM ESTOQUE COM A DESCRIÇÃO/NOME CORRETAMENTE\nPARA INSERIR UM PRODUTO!\n");
 								}
-
 							}
-
 						}
 						break;
 					}
@@ -204,10 +200,8 @@ public class ProdutoRepository implements CrudClass<Produto> {
 					System.out.printf("\nINSIRA UMA OPÇÃO CORRETA!\n");
 					System.out.print("\n---------------------------\n\n");
 				}
-
 			}
 		}
-
 	}
 
 	@Override
@@ -357,18 +351,5 @@ public class ProdutoRepository implements CrudClass<Produto> {
 		dataInscricao = dF.parse(resp);
 
 		return dataInscricao;
-	}
-
-	public int contarProdutosPorTipoDeEstoque(String tipoDeEstoque) {
-		List<Produto> pList = ProdutoRepository.getInstance().listProduto;
-
-		int quantidadeTotal = 0;
-
-		for (Produto produto : pList) {
-			if (produto.getDescricaoProduto().equals(tipoDeEstoque)) {
-				quantidadeTotal += produto.getEstoque().getQuantidadeProduto();
-			}
-		}
-		return quantidadeTotal;
 	}
 }
