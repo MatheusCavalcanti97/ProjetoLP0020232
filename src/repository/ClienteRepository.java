@@ -34,6 +34,14 @@ public class ClienteRepository implements CrudClass<Cliente> {
 		return instance;
 	}
 
+	public List<Cliente> getListCliente() {
+		return listCliente;
+	}
+
+	public void setListCliente(List<Cliente> listCliente) {
+		this.listCliente = listCliente;
+	}
+
 	@Override
 	public void inserir() throws CpfException, ClienteJaCadastradoException, AtributosNaoNulosNaoVaziosException,
 			ApenasLetrasException, ParseException, TelefoneException, NullPointerException {

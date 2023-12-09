@@ -3,9 +3,13 @@ package views;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class menuVenda {
-	
-	public static void menuProduto() {
+import exceptionsClass.AtributosNaoNulosNaoVaziosException;
+import exceptionsClass.ListaVaziaException;
+import repository.VendaRepository;
+
+public class MenuVenda {
+
+	public static void menuProduto() throws ListaVaziaException, AtributosNaoNulosNaoVaziosException {
 
 		Integer opcaoMenu = null;
 		boolean varFlagMenu = true;
@@ -17,8 +21,7 @@ public class menuVenda {
 				System.out.print("\n---------------------------\n");
 				System.out.print("	  VENDAS		");
 				System.out.print("\n---------------------------\n");
-				System.out.print("\n1. Inserir." + "\n2. Atualizar." + "\n3. Deletar." + "\n4. Listar Todos as Vendas."
-						+ "\n0. Sair." + "-> ");
+				System.out.print("\n1. Realizar Venda." + "\n2. Listar Todas as Vendas." + "\n0. Sair." + "-> ");
 
 				opcaoMenu = ler.nextInt();
 				System.out.print("\n---------------------------\n");
@@ -36,12 +39,12 @@ public class menuVenda {
 				System.out.print("\n---------------------------\n");
 				varFlagMenu = false;
 			} else if (opcaoMenu == 1) {
+				
+				VendaRepository.getInstance().vender();
 
 			} else if (opcaoMenu == 2) {
-
-			} else if (opcaoMenu == 3) {
-
-			} else if (opcaoMenu == 4) {
+				
+				VendaRepository.getInstance().listarTodos();
 
 			} else {
 				System.out.print("\n---------------------------\n\n");

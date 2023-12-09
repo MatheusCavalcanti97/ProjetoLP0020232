@@ -297,6 +297,14 @@ public class ProdutoRepository implements CrudClass<Produto> {
 		return pList;
 	}
 
+	public List<Produto> getListProduto() {
+		return listProduto;
+	}
+
+	public void setListProduto(List<Produto> listProduto) {
+		this.listProduto = listProduto;
+	}
+
 	private Date DataFabricacao() throws ParseException {
 		System.out.println("-- INFO DATA DE FABRICACAO --");
 		System.out.printf("\n---------------------------\n");

@@ -8,10 +8,11 @@ import exceptionsClass.ApenasLetrasException;
 import exceptionsClass.AtributosNaoNulosNaoVaziosException;
 import exceptionsClass.ClienteJaCadastradoException;
 import exceptionsClass.CpfException;
+import exceptionsClass.ListaVaziaException;
 
 public class Main {
 
-	public void run() throws CpfException, AtributosNaoNulosNaoVaziosException, ClienteJaCadastradoException, ApenasLetrasException, ParseException {
+	public void run() throws CpfException, AtributosNaoNulosNaoVaziosException, ClienteJaCadastradoException, ApenasLetrasException, ParseException, ListaVaziaException {
 		Boolean flagMenu = true;
 		Integer opcaoMenu = null;
 		while (flagMenu) {
@@ -50,7 +51,7 @@ public class Main {
 			} else if (opcaoMenu == 4) {
 				MenuProduto.menuProduto();
 			} else if (opcaoMenu == 5) {
-				menuVenda.menuProduto();
+				MenuVenda.menuProduto();
 			} else if (opcaoMenu < 1 || opcaoMenu > 5) {
 				System.out.print("\n---------------------------\n\n");
 				System.out.printf("\nINSIRA UMA OPÇÃO CORRETA!\n");
