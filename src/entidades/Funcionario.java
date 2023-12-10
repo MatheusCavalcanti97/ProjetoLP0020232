@@ -21,6 +21,9 @@ public class Funcionario extends Pessoa {
 		this.dataDeAdmissao = dataDeAdmissao;
 		this.comissao = comissao;
 	}
+	public Funcionario() {
+		
+	}
 
 	public String getMatriculaFunc() {
 		return matriculaFunc;

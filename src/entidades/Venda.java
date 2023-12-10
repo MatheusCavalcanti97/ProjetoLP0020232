@@ -1,5 +1,6 @@
 package entidades;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.xml.crypto.Data;
@@ -8,11 +9,11 @@ public class Venda {
 
 	public Funcionario vendedor;
 	public Cliente cliente;
-	public Data data;
+	public LocalDate data;
 	public double valorTotal;
 	public ArrayList<Produto> produtos = new ArrayList();
 
-	public Venda(Data data, double valorTotal, ArrayList<Produto> produtos) {
+	public Venda(LocalDate data, double valorTotal, ArrayList<Produto> produtos, Cliente cliente, Funcionario vendedor) {
 		super();
 		this.data = data;
 		this.valorTotal = valorTotal;
